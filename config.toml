@@ -190,7 +190,7 @@ enableGitInfo = true
   autoThumbnailImage = false
 
   # Your favicon path, default is "/favicon.png"
-  favicon = '/favicon.png'
+  favicon = '/images/favicon.png'
   
   # ------------------
   # External resources
