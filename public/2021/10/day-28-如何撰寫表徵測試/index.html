@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Day 28 如何撰寫表徵測試",
+  
+  "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png",
+  
+  "datePublished": "2021-10-12T17:24:59+08:00",
+  "dateModified": "2021-10-12T17:24:59+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Robert.C",
+    
+    "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/robeeerto.tw\/2021\/10\/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Robert.C",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    }
+    
+  },
+  "description": "表徵測試是什麼？怎麼寫？\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.88.1 with theme Tranquilpeak 0.5.0-BETA">
+<meta name="author" content="Robert.C">
+<meta name="keywords" content="">
+<meta name="description" content="表徵測試是什麼？怎麼寫？">
+
+
+<meta property="og:description" content="表徵測試是什麼？怎麼寫？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day 28 如何撰寫表徵測試">
+<meta name="twitter:title" content="Day 28 如何撰寫表徵測試">
+<meta property="og:url" content="https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/">
+<meta property="twitter:url" content="https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/">
+<meta property="og:site_name" content="Robert.C">
+<meta property="og:description" content="表徵測試是什麼？怎麼寫？">
+<meta name="twitter:description" content="表徵測試是什麼？怎麼寫？">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-10-12T17:24:59">
+  
+  
+    <meta property="article:modified_time" content="2021-10-12T17:24:59">
+  
+  
+  
+    
+      <meta property="article:section" content="2021 鐵人賽">
+    
+  
+  
+    
+      <meta property="article:tag" content="RSpec">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+
+
+
+    <title>Day 28 如何撰寫表徵測試</title>
+
+    <link rel="icon" href="https://robeeerto.tw/images/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://robeeerto.tw/css/style-x4v5aep1xln8tw4u8b4utrzzm45rcnnq6emr4myqn5eka2yri56y1t7q.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-205530984-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://robeeerto.tw/" aria-label="去首頁">Robert.C</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://robeeerto.tw/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://robeeerto.tw/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Robert.C</h4>
+        
+          <h5 class="sidebar-profile-bio">Ruby on Rails Developer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robeeerto" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Day 28 如何撰寫表徵測試
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-10-12T17:24:59&#43;08:00">
+        
+  十月 12, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://robeeerto.tw/categories/2021-%e9%90%b5%e4%ba%ba%e8%b3%bd">2021 鐵人賽</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>表徵測試是什麼？怎麼寫？</p>
+<h1 id="table-of-contents">目錄</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#什麼是表徵測試以及解決的問題是什麼">什麼是表徵測試以及解決的問題是什麼？</a></li>
+    <li><a href="#假設情境">假設情境</a></li>
+    <li><a href="#重構-services_with_info">重構 services_with_info</a></li>
+    <li><a href="#第一目標簡單的實體化物件">第一目標：簡單的實體化物件</a></li>
+    <li><a href="#第二目標被測試的方法能夠回傳值嗎">第二目標：被測試的方法能夠回傳值嗎？</a></li>
+    <li><a href="#回傳的-value">回傳的 value</a></li>
+    <li><a href="#使用更直接的-expectation">使用更直接的 Expectation</a></li>
+    <li><a href="#測試通過後我要做什麼">測試通過後，我要做什麼？</a></li>
+    <li><a href="#小結">小結</a></li>
+  </ul>
+</nav>
+
+<h1 id="什麼是表徵測試以及解決的問題是什麼">什麼是表徵測試以及解決的問題是什麼？</h1>
+<p>假如我遇到一段想重構的代碼，但不幸的是：</p>
+<ol>
+<li>我甚至看不懂他在幹嘛</li>
+<li>他也沒有被測試給覆蓋</li>
+</ol>
+<p>重構自己不理解的程式碼是有巨大的風險的，而且問題來了，如果我不知道他是做什麼的，那我要怎麼幫這段代碼寫測試呢？</p>
+<p>有一個有趣的東西叫做：<a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E5%BE%81%E6%B5%8B%E8%AF%95">表徵測試</a>，我是之前讀文章的時候看到的，他讓解決難題變得直接和簡單，等等會用一些簡單的範例做示範！</p>
+<h1 id="假設情境">假設情境</h1>
+<p>假設這是一段舊專案的程式碼。</p>
+<p>下面的兩個方法 <code>services_with_info</code> &amp; <code>products_with_info</code> 有幾個問題。一個是他們具有很大的重複性，還有這兩個方法其實並沒有真正的幫助，這兩個方法應該可以放到其他地方去，讓 Appointment 專注當一個 Appointment 的 Model，不必把 <code>appointment_services</code> &amp; <code>appointment_products</code> 序列化的過程放進來。</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Scenario</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">class Appointment &lt; ActiveRecord::Base
+  def services_with_info
+    services.collect { |item|
+      item.serializable_hash.merge(
+        &#34;price&#34;: number_with_precision(item.price, precision: 2),
+        &#34;label&#34;: item.service.name,
+        &#34;item_id&#34;: item.service.id,
+        &#34;type&#34;: &#34;service&#34;
+      )
+    }
+  end
+
+  def products_with_info
+    products.collect { |item|
+      item.serializable_hash.merge(
+        &#34;price&#34;: number_with_precision(item.price, precision: 2),
+        &#34;label&#34;: item.product.name,
+        &#34;item_id&#34;: item.product.id,
+        &#34;type&#34;: &#34;product&#34;
+      )
+    }
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="重構-services_with_info">重構 services_with_info</h1>
+<p>這兩個方法中，我們先把目光放在 <code>services_with_info</code>，我的目標是抽離這個方法，創立一個抽象的概念，然後把主體移過去那邊。</p>
+<p>重構時可能可以第一次就想到一個很棒的抽象概念，也可能不不行。我們可以先試試看一個抽象概念叫做 <code>Appointment::ServiceCollection</code> 的新類別。</p>
+<p>下面是這個類別，目前做的就只是把 <code>services_with_info</code> 的內容複製貼上過來而已。</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Refactor services_with_info</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">module Appointment
+  class ServiceCollection
+    def initialize(services)
+      @services = services
+    end
+
+    def to_h
+      @services.to_h { |item|
+        item.serializable_hash.merge(
+          &#34;price&#34;: number_with_precision(item.price, precision: 2),
+          &#34;label&#34;: item.service.name,
+          &#34;item_id&#34;: item.service.id,
+          &#34;type&#34;: &#34;service&#34;
+        )
+      }
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="第一目標簡單的實體化物件">第一目標：簡單的實體化物件</h1>
+<p>當開始為這個新類別寫測試時，盡可能投入較少的經歷，先問自己一個問題，這個 <code>ServiceCollection</code> 能夠實體化物件嗎？</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>First Goal</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe Appointment::ServiceCollection do
+  describe &#39;#to_h&#39; do
+    it &#39;works&#39; do
+      appointment_service = create(:appointment_service)
+      collection = Appointment::ServiceCollection.new([appointment_service])
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="第二目標被測試的方法能夠回傳值嗎">第二目標：被測試的方法能夠回傳值嗎？</h1>
+<p>剛剛的測試通過後，下一步將是期待一個看起來有點蠢的東西</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Second Goal</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe Appointment::ServiceCollection do
+  describe &#39;#to_h&#39; do
+    it &#39;works&#39; do
+      appointment_service = create(:appointment_service)
+      collection = Appointment::ServiceCollection.new([appointment_service])
+      expect(collection.to_h).to eq(&#39;asdf&#39;)
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>我當然知道 <code>collection.to_h</code> 不會等於 <code>'asdf'</code>，但我不知道他等於什麼，所以任何的回傳值都會是錯誤。完全沒必要花心思去猜他會回傳什麼，反正測試結果會告訴我！</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">F
+
+Failures:
+
+  1) Appointment::ServiceCollection#to_h works
+     Failure/Error: expect(collection.to_h).to eq('asdf')
+     TypeError:
+       wrong element type AppointmentService at 0 (expected array)
+     # ./app/models/appointment/service_collection.rb:7:in `to_h'
+     # ./app/models/appointment/service_collection.rb:7:in `to_h'
+     # ./spec/models/appointment/service_collection_spec.rb:8:in `block (3 levels) in &lt;top (required)&gt;'
+
+Finished in 0.50943 seconds (files took 3.44 seconds to load)
+1 example, 1 failure
+</code></pre><p>因為是重構一個不知道會回傳什麼的方法，所以錯誤很正常，我們可以嘗試把程式碼註解掉。</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Second Goal</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">module Appointment
+  class ServiceCollection
+    def initialize(services)
+      @services = services
+    end
+
+    def to_h
+      @services.to_h { |item|
+        #item.serializable_hash.merge(
+          #&#34;price&#34;: number_with_precision(item.price, precision: 2),
+          #&#34;label&#34;: item.service.name,
+          #&#34;item_id&#34;: item.service.id,
+          #&#34;type&#34;: &#34;service&#34;
+        #)
+      }
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>結果還是錯誤，那我們就註解掉更多的程式碼看看</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Second Goal</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">module Appointment
+  class ServiceCollection
+    def initialize(services)
+      @services = services
+    end
+
+    def to_h
+      #@services.to_h { |item|
+        #item.serializable_hash.merge(
+          #&#34;price&#34;: number_with_precision(item.price, precision: 2),
+          #&#34;label&#34;: item.service.name,
+          #&#34;item_id&#34;: item.service.id,
+          #&#34;type&#34;: &#34;service&#34;
+        #)
+      #}
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>沒有太意外的還是錯誤，但結果改變了～</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">F
+
+Failures:
+
+  1) Appointment::ServiceCollection#to_h works
+     Failure/Error: expect(collection.to_h).to eq('asdf')
+       
+       expected: &quot;asdf&quot;
+            got: nil
+       
+       (compared using ==)
+     # ./spec/models/appointment/service_collection_spec.rb:8:in `block (3 levels) in &lt;top (required)&gt;'
+
+Finished in 0.49608 seconds (files took 3.41 seconds to load)
+1 example, 1 failure
+</code></pre><p>很明顯，問題出在 <code>#@appointment_services.to_h { |item|</code> 這行。問題大概是出在 to_h 身上，那我試著用 map 代替呢？</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Second Goal</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">module Appointment
+  class ServiceCollection
+    def initialize(services)
+      @services = services
+    end
+
+    def to_h
+      @services.map { |item|
+        #item.serializable_hash.merge(
+          #&#34;price&#34;: number_with_precision(item.price, precision: 2),
+          #&#34;label&#34;: item.service.name,
+          #&#34;item_id&#34;: item.service.id,
+          #&#34;type&#34;: &#34;service&#34;
+        #)
+      }
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>成功了，這樣沒有得到像之前 <code>wrong element type</code> 的錯誤，而是不一樣的，更符合我們想看到的東西。</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">F
+
+Failures:
+
+  1) Appointment::ServiceCollection#to_h works
+     Failure/Error: expect(collection.to_h).to eq('asdf')
+       
+       expected: &quot;asdf&quot;
+            got: [nil]
+       
+       (compared using ==)
+       
+       Diff:
+       @@ -1,2 +1,2 @@
+       -&quot;asdf&quot;
+       +[nil]
+       
+     # ./spec/models/appointment/service_collection_spec.rb:8:in `block (3 levels) in &lt;top (required)&gt;'
+
+Finished in 0.48778 seconds (files took 3.5 seconds to load)
+1 example, 1 failure
+</code></pre><p>現在讓我把之前的註解都全部拔掉看看會怎麼樣～</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Second Goal</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">module Appointment
+  class ServiceCollection
+    def initialize(services)
+      @services = services
+    end
+
+    def to_h
+      @services.map { |item|
+        item.serializable_hash.merge(
+          &#34;price&#34;: number_with_precision(item.price, precision: 2),
+          &#34;label&#34;: item.service.name,
+          &#34;item_id&#34;: item.service.id,
+          &#34;type&#34;: &#34;service&#34;
+        )
+      }
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>出現另一個不同的錯誤，說找不到 <code>number_with_precision</code> 這個方法</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">F
+
+Failures:
+
+  1) Appointment::ServiceCollection#to_h works
+     Failure/Error: expect(collection.to_h).to eq('asdf')
+     NoMethodError:
+       undefined method `number_with_precision' for #&lt;Appointment::ServiceCollection:0x007ff60274e640&gt;
+     # ./app/models/appointment/service_collection.rb:9:in `block in to_h'
+     # ./app/models/appointment/service_collection.rb:7:in `map'
+     # ./app/models/appointment/service_collection.rb:7:in `to_h'
+     # ./spec/models/appointment/service_collection_spec.rb:8:in `block (3 levels) in &lt;top (required)&gt;'
+
+Finished in 0.52793 seconds (files took 3.32 seconds to load)
+1 example, 1 failure
+</code></pre><p>剛好我們可以透過 Rails API 之後這個方法是放在哪裡，如果要在我們獨創的類別中使用，我們要 include <code>ActionView::Helpers::NumberHelper</code> 進來用。</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Second Goal</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">module Appointment
+  class ServiceCollection
+  include ActionView::Helpers::NumberHelper
+ 
+    def initialize(services)
+      @services = services
+    end
+
+    def to_h
+      @services.map { |item|
+        item.serializable_hash.merge(
+          &#34;price&#34;: number_with_precision(item.price, precision: 2),
+          &#34;label&#34;: item.service.name,
+          &#34;item_id&#34;: item.service.id,
+          &#34;type&#34;: &#34;service&#34;
+        )
+      }
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="回傳的-value">回傳的 value</h1>
+<p>處理完這個問題後，我們終於可以看到回傳的結果是什麼了</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">F                                              
+
+Failures:                                      
+
+  1) Appointment::ServiceCollection#to_h works   
+     Failure/Error: expect(collection.to_h).to eq('asdf')                                     
+                                               
+       expected: &quot;asdf&quot;                        
+            got: [{&quot;id&quot;=&gt;1, &quot;appointment_id&quot;=&gt;1, &quot;service_id&quot;=&gt;1, &quot;created_at&quot;=&gt;Sun, 24 Feb 2019 16:45:16 EST -05:00, &quot;updated_at&quot;=&gt;Sun, 24 Feb 2019 16:45:16 EST -05:00, &quot;length&quot;=&gt;nil, &quot;stylist_id&quot;=&gt;2, &quot;price&quot;=&gt;&quot;0.00&quot;, &quot;label&quot;=&gt;&quot;ve0xttqqfl&quot;, &quot;item_id&quot;=&gt;1, &quot;type&quot;=&gt;&quot;service&quot;}]        
+                                               
+       (compared using ==)                     
+                                               
+       Diff:                                   
+       @@ -1,2 +1,12 @@                        
+       -&quot;asdf&quot;                                 
+       +[{&quot;id&quot;=&gt;1,                             
+       +  &quot;appointment_id&quot;=&gt;1,                 
+       +  &quot;service_id&quot;=&gt;1,                     
+       +  &quot;created_at&quot;=&gt;Sun, 24 Feb 2019 16:45:16 EST -05:00,                                 
+       +  &quot;updated_at&quot;=&gt;Sun, 24 Feb 2019 16:45:16 EST -05:00,                                 
+       +  &quot;length&quot;=&gt;nil,                       
+       +  &quot;stylist_id&quot;=&gt;2,                     
+       +  &quot;price&quot;=&gt;&quot;0.00&quot;,                     
+       +  &quot;label&quot;=&gt;&quot;ve0xttqqfl&quot;,               
+       +  &quot;item_id&quot;=&gt;1,                        
+       +  &quot;type&quot;=&gt;&quot;service&quot;}]                  
+                                               
+     # ./spec/models/appointment/service_collection_spec.rb:8:in `block (3 levels) in &lt;top (required)&gt;'                                                                                      
+
+Finished in 0.72959 seconds (files took 3.24 seconds to load)                                 
+1 example, 1 failure
+</code></pre><p>看到回傳的結果真的很有趣，因為這是在重構一個舊專案，所以看到回傳值的時候就覺得好像要解開秘密了～</p>
+<h1 id="使用更直接的-expectation">使用更直接的 Expectation</h1>
+<p>我們要用更現實的數值來進行測試。我知道測試會失敗，因為數值是隨意捏造的。</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>More Detail Expectation</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe Appointment::ServiceCollection do
+  describe &#39;#to_h&#39; do
+    it &#39;works&#39; do
+      appointment_service = create(:appointment_service)
+      collection = Appointment::ServiceCollection.new([appointment_service])
+      
+      item = collection.to_h.first
+      expect(item[&#39;price&#39;]).to eq(&#39;30.00&#39;)
+      expect(item[&#39;label&#39;]).to eq(&#39;Robert Chang&#39;)
+      expect(item[&#39;item_id&#39;]).to eq(appointment_service.item.id)
+      expect(item[&#39;type&#39;]).to eq(&#39;service&#39;)
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>這在執行測試是為了讓我的測試設置更符合我們期待的值！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>More Detail Expectation</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe Appointment::ServiceCollection do
+  describe &#39;#to_h&#39; do
+    it &#39;works&#39; do
+      appointment_service = create(
+        :appointment_service, 
+        price: 30,
+        service: create(:service, name: &#39;Robert Chang&#39;))
+        
+      collection = Appointment::ServiceCollection.new([appointment_service])
+      
+      item = collection.to_h.first
+      expect(item[&#39;price&#39;]).to eq(&#39;30.00&#39;)
+      expect(item[&#39;label&#39;]).to eq(&#39;Robert Chang&#39;)
+      expect(item[&#39;item_id&#39;]).to eq(appointment_service.item.id)
+      expect(item[&#39;type&#39;]).to eq(&#39;service&#39;)
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="測試通過後我要做什麼">測試通過後，我要做什麼？</h1>
+<p>現在測試通過了，到目前為止，我們盡可能減少接觸原本程式碼的機會，因為我想最大限度的保留原本功能。現在我有了測試，我的測試可以保有原本的功能，而且我還可以自由地重構這段程式碼！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>What Is Next?</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">module Appointment
+  class ServiceCollection
+    include ActionView::Helpers::NumberHelper
+    ITEM_TYPE = &#39;service&#39;
+
+    def initialize(services)
+      @services = services
+    end
+
+    def to_h
+      @services.map do |service|
+        service.serializable_hash.merge(extra_attributes(service))
+      end
+    end
+
+    private
+
+    def extra_attributes(service)
+      {
+        &#39;price&#39;   =&gt; number_with_precision(service.price, precision: 2),
+        &#39;label&#39;   =&gt; service.service.name,
+        &#39;item_id&#39; =&gt; service.service.id,
+        &#39;type&#39;    =&gt; ITEM_TYPE
+      }
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>順便來整理一下測試的代碼：</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Refactor Test Code</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe Appointment::ServiceCollection do
+  describe &#39;#to_h&#39; do
+    let(:appointment_service) do
+      create(
+        :appointment_service,
+        price: 30,
+        service: create(:service, name: &#39;Robert Chang&#39;)
+      )
+    end
+
+    let(:item) { Appointment::ServiceCollection.new([appointment_service]).to_h.first }
+
+    it &#39;adds the right attributes&#39; do
+      expect(item[&#39;price&#39;]).to eq(&#39;30.00&#39;)
+      expect(item[&#39;label&#39;]).to eq(&#39;Robert Chang&#39;)
+      expect(item[&#39;item_id&#39;]).to eq(appointment_service.service.id)
+      expect(item[&#39;type&#39;]).to eq(&#39;service&#39;)
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>最後，我們就可以用我們新做的類別來取代原先的程式碼：</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Refactor Done</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby"># 原本的
+
+def services_with_info
+    services.collect { |item|
+      item.serializable_hash.merge(
+        &#34;price&#34;: number_with_precision(item.price, precision: 2),
+        &#34;label&#34;: item.service.name,
+        &#34;item_id&#34;: item.service.id,
+        &#34;type&#34;: &#34;service&#34;
+      )
+    }
+end
+
+# 現在的
+
+def services_with_info
+  Appointment::ServiceCollection.new(services).to_h
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="小結">小結</h1>
+<p>這在重構的路上可以說是杯水車薪，但現在我們已經減少了很多的程式碼，因為其實 Rails 的 MVC 也沒有那麼夠用，並不是真的讓 Model 肥就是好，像這種取得資訊的方法，我們說不定可以把它全部拉出來整理！</p>
+<p>但至少我們今天也知道了，如果一段程式碼他沒有測試，而且你還不知道他會回傳什麼的時候，嘗試看看這個表徵測試的方法，一步一步的找到能夠整理的邏輯，並且同時補上測試！</p>
+              
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://robeeerto.tw/tags/rspec/">RSpec</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-29-rspec-%E8%A3%A1%E7%9A%84-factories-%E5%92%8C-fixtures/" data-tooltip="Day 29 RSpec 裡的 Factories 和 Fixtures" aria-label="下一篇: Day 29 RSpec 裡的 Factories 和 Fixtures">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-27-rspec-%E7%9A%84-mock-stub/" data-tooltip="Day 27 RSpec 的 Mock &amp; Stub" aria-label="上一篇: Day 27 RSpec 的 Mock &amp; Stub">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/robeeerto.tw\/2021\/10\/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6\/';
+        
+          this.page.identifier = '\/2021\/10\/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-robeeerto-github-io';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Robert.C. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-29-rspec-%E8%A3%A1%E7%9A%84-factories-%E5%92%8C-fixtures/" data-tooltip="Day 29 RSpec 裡的 Factories 和 Fixtures" aria-label="下一篇: Day 29 RSpec 裡的 Factories 和 Fixtures">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-27-rspec-%E7%9A%84-mock-stub/" data-tooltip="Day 27 RSpec 的 Mock &amp; Stub" aria-label="上一篇: Day 27 RSpec 的 Mock &amp; Stub">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-28-%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E8%A1%A8%E5%BE%B5%E6%B8%AC%E8%A9%A6/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-28-%25E5%25A6%2582%25E4%25BD%2595%25E6%2592%25B0%25E5%25AF%25AB%25E8%25A1%25A8%25E5%25BE%25B5%25E6%25B8%25AC%25E8%25A9%25A6%2F" aria-label="分享到 %s Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-28-%25E5%25A6%2582%25E4%25BD%2595%25E6%2592%25B0%25E5%25AF%25AB%25E8%25A1%25A8%25E5%25BE%25B5%25E6%25B8%25AC%25E8%25A9%25A6%2F" aria-label="分享到 %s Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-28-%25E5%25A6%2582%25E4%25BD%2595%25E6%2592%25B0%25E5%25AF%25AB%25E8%25A1%25A8%25E5%25BE%25B5%25E6%25B8%25AC%25E8%25A9%25A6%2F" aria-label="分享到 %s Google&#43;">
+          <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Robert.C</h4>
+    
+      <div id="about-card-bio">Ruby on Rails Developer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan, Taipei
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108270054348.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://robeeerto.tw/js/script-8lglxdix2nqhalxxm2bujhkcc8cctdrd5o5axonwhfzx2zqrer5facyn8.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

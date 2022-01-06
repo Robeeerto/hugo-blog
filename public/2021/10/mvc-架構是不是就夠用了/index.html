@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MVC 架構是不是就夠用了？",
+  
+  "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp",
+  
+  "datePublished": "2021-10-04T03:57:01+08:00",
+  "dateModified": "2021-10-04T03:57:01+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Robert.C",
+    
+    "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/robeeerto.tw\/2021\/10\/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Robert.C",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    }
+    
+  },
+  "description": "通通寫在 Model 就好了？\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.88.1 with theme Tranquilpeak 0.5.0-BETA">
+<meta name="author" content="Robert.C">
+<meta name="keywords" content="">
+<meta name="description" content="通通寫在 Model 就好了？">
+
+
+<meta property="og:description" content="通通寫在 Model 就好了？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC 架構是不是就夠用了？">
+<meta name="twitter:title" content="MVC 架構是不是就夠用了？">
+<meta property="og:url" content="https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/">
+<meta property="twitter:url" content="https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/">
+<meta property="og:site_name" content="Robert.C">
+<meta property="og:description" content="通通寫在 Model 就好了？">
+<meta name="twitter:description" content="通通寫在 Model 就好了？">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-10-04T03:57:01">
+  
+  
+    <meta property="article:modified_time" content="2021-10-04T03:57:01">
+  
+  
+  
+    
+      <meta property="article:section" content="Ruby on Rails">
+    
+  
+  
+    
+      <meta property="article:tag" content="OrganizeCode">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp">
+
+
+
+    <title>MVC 架構是不是就夠用了？</title>
+
+    <link rel="icon" href="https://robeeerto.tw/images/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://robeeerto.tw/css/style-x4v5aep1xln8tw4u8b4utrzzm45rcnnq6emr4myqn5eka2yri56y1t7q.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-205530984-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://robeeerto.tw/" aria-label="去首頁">Robert.C</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://robeeerto.tw/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://robeeerto.tw/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Robert.C</h4>
+        
+          <h5 class="sidebar-profile-bio">Ruby on Rails Developer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robeeerto" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      MVC 架構是不是就夠用了？
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-10-04T03:57:01&#43;08:00">
+        
+  十月 4, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://robeeerto.tw/categories/ruby-on-rails">Ruby on Rails</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>通通寫在 Model 就好了？</p>
+<h1 id="table-of-contents">目錄</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#mvc-架構是不是就夠用了">MVC 架構是不是就夠用了？</a></li>
+    <li><a href="#view-helper">View Helper</a></li>
+    <li><a href="#concern">Concern</a></li>
+    <li><a href="#plain-old-ruby-object">Plain Old Ruby Object</a></li>
+    <li><a href="#小結">小結</a></li>
+  </ul>
+</nav>
+
+<h1 id="mvc-架構是不是就夠用了">MVC 架構是不是就夠用了？</h1>
+<p>最近工作的時候，收到了這樣的問題，確實讓我想了蠻多的，也透過很多的文章來讓自己去思考，究竟 Rails 的 MVC 架構是不是就能夠處理你整個應用程式呢？</p>
+<p>我認為答案是：可以</p>
+<p>但這樣真的是符合物件導向的設計模式嗎？</p>
+<p>下面這段話是 Wiki 中對於物件導向設計的描述：</p>
+<blockquote>
+<p>物件導向設計被理解為一種將程式分解為封裝資料及相關操作的模組而進行的程式設計方式</p>
+</blockquote>
+<p>以前剛開始在學 Rails 的時候，會習慣把 Code 全部塞在 Controller 裡面，像這樣&hellip; ( 我知道這段 Code 很鬧 )</p>
+<p>但其實對於新手來說，這非常直覺，也好像很容易 debug，但我們真的有讓 MVC 各司其職嗎？</p>
+<p>其實並沒有&hellip;</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Bad Code</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">def random_create
+    params[:ticketCount].each do |per_ticket|
+      for_sale_ticket =  Ticket.find(per_ticket[0].to_i).seats.where(status: &#39;for_sale&#39;)
+
+      num = (for_sale_ticket.ids.count / 2).ceil
+
+      id_array = for_sale_ticket.ids.sort
+
+      per_ticket[1].to_i.times do
+        seat = for_sale_ticket.find(id_array[num])
+        ticket = Ticket.find(per_ticket[0].to_i)
+        line_item = current_cart.line_items.new(seat_id: seat.id)
+        line_item.save
+        num &#43;= 1
+      end
+    end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>所以之後開始被教育，<code>fat model skinny controller</code>，這時候又開始把所有的邏輯都塞進去 Model 裡面。</p>
+<p>基本上只要主詞是 Model 的類別或是實體變數，我就會寫一個 Model 的方法。</p>
+<p>但變超肥的 Model 真的沒關係嗎？</p>
+<p>其實道理一樣，都可以沒關係，但這樣有讓物件互動起來嗎？好像就失去了靈魂了，也失去了好擴充以及好維護的初衷！</p>
+<p>於是 Rails 有 View Helper 以及 Concern 這兩個東西來幫助我們整理邏輯。</p>
+<h1 id="view-helper">View Helper</h1>
+<p>光看名字就能夠猜到，這個 Helper 主要的功能是在頁面的呈現上給予幫助。</p>
+<p>假設我們要根據一個漢堡的不同種類的起司分別給予不一樣的 icon 呢？</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>View Helper</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby"># Helper
+module BurgerHelper
+  def cheese_icon(type)
+    case type
+    when ricotta
+      tag.i(...)
+    when parmesan
+      tag.i(...)
+    when feta
+      tag.i(...)
+    end
+  end
+end
+
+# View
+&lt;%= cheese_icon(@burger.cheese) %&gt;</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>這樣子 Model 是不是又瘦身一波了呢？而且這些關於畫面呈現的 Code 真的適合放在 Model 裡面嗎？</p>
+<p>我想明顯的是非常的不適合，如果 Rails 有提供這樣方便的功能，其實真的能夠嘗試著移動自己塞在 Model 的程式碼試試看喔！</p>
+<h1 id="concern">Concern</h1>
+<p>在看文章的過程中，我看到了一段 DHH 對於 Concern 的描述：</p>
+<blockquote>
+<p>Concerns are also a helpful way of extracting a slice of model that doesn’t seem part of its essence。</p>
+</blockquote>
+<p>其實就是，Concern 可以幫助你提取那些不屬於 Model 本質的片段～</p>
+<p>有些時候某些邏輯其實不一定隸屬於某個特定的 Model，他可能是，通知，管理權限等等。</p>
+<p>就拿權限來說吧，某些網頁能不能夠被特定的使用者給瀏覽，這難道是 User 這個 Model 本身的責任嗎？</p>
+<p>能不能做些什麼，應該要拉出另一個邏輯來進行判斷，例如：</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Concern</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby"># concern
+module Authorized
+  extend ActiveSupport::Concern
+  
+  def authorize(role)
+    # 能不能瀏覽的邏輯放在這邊...
+  end
+  
+  module ClassMethods
+  end
+end
+
+# Controller
+class PagesController &lt; ApplicationController
+  include Authorized
+  
+  def index
+    authorize(current_user)
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>當然拆分邏輯的方式有很多種，但讓每個東西各司其職是一個在未來開發的過程中能夠道路暢通的方式！</p>
+<p>當某個 Model 或是 Controller 承擔了太多的責任，那當發生錯誤的時候，就會需要大量的時間瀏覽原始碼，甚至改動會牽動到各處。</p>
+<p>至於什麼東西該屬於 Model 這件事情，其實可以經過團隊的討論再來決定，因為有時候界線真的很模糊，能夠找到共識是更重要的事情！</p>
+<h1 id="plain-old-ruby-object">Plain Old Ruby Object</h1>
+<p>這也是一種減少肥胖 Model 的方式，利用 Ruby 本身的類別以及模組的特型來完成任務，因為有些邏輯本身就不屬於 Model 的範疇，甚至連關聯都扯不上邊。</p>
+<p>例如：計算、讀檔、通知、串接金流等等</p>
+<p>這些功能，其實都是應該要有自己的家，而不是通通寄生在某個 Model 身上～</p>
+<p>其實我覺得和前面提過的 View Helper 以及 Concern 有異曲同工之妙，但 Concern 以及 View Helper 本來就是和我們本身應用程式的邏輯有所關聯，而 PORO 這件事所提供的更像是某種外部的共通服務！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>PORO</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby"># Service Object 像是提供某種服務
+class &#34;某種服務的名稱&#34;
+  def initialize(...)
+    # 其實不一定需要 new 的方法
+  end
+  
+  def send
+     ....
+  end
+end
+
+# 如果想要有 Model 的特殊效果，驗證，可以 include ActiveModel::Model
+class &#34;某種服務的名稱&#34;
+  include ActiveModel::Model
+
+  def initialize(...)
+    # 其實不一定需要 new 的方法
+  end
+  
+  def send
+     ....
+  end
+end
+
+# 甚至你的服務上面還可以有個統稱？
+module TopLevelService
+  class &#34;某種服務的名稱&#34;
+  include ActiveModel::Model
+
+  def initialize(...)
+    # 其實不一定需要 new 的方法
+  end
+  
+  def send
+     ....
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="小結">小結</h1>
+<p>關於 MVC 究竟夠不夠用呢？我還是會說：夠！</p>
+<p>若是你只是要這個應用程式可以動起來，那真的很夠！</p>
+<p>但若是考慮到長期的維護和擴充，我想特殊的服務和沒那麼符合 Model 本質的邏輯應該需要特別的切割出來才對！</p>
+<p>Model 更多的還是和資料之間的互動，而不是寫一些實體方法來做別的事情！</p>
+<p>這也是我近期在專案開發中學習到的事！</p>
+<p>原來讓一個 Model 瘦下來不是一件簡單的事情，是從以前到現在的 Rails 開發者都會碰到，且官方也提供了許多方式來提高程式碼的維護和擴充性！</p>
+<p>但更多時候，巨大的專案可能就需要使用到 PORO 的方式來整理服務內容！</p>
+              
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://robeeerto.tw/tags/organizecode/">OrganizeCode</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-20-%E7%9C%9F%E7%9C%9F%E5%81%87%E5%81%87%E7%9A%84-instance-doubles/" data-tooltip="Day 20 真真假假的 Instance doubles" aria-label="下一篇: Day 20 真真假假的 Instance doubles">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-19-%E9%AD%81%E5%84%A1%E7%9A%84-double-object/" data-tooltip="Day 19 魁儡的 double object" aria-label="上一篇: Day 19 魁儡的 double object">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/robeeerto.tw\/2021\/10\/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86\/';
+        
+          this.page.identifier = '\/2021\/10\/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-robeeerto-github-io';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Robert.C. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-20-%E7%9C%9F%E7%9C%9F%E5%81%87%E5%81%87%E7%9A%84-instance-doubles/" data-tooltip="Day 20 真真假假的 Instance doubles" aria-label="下一篇: Day 20 真真假假的 Instance doubles">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-19-%E9%AD%81%E5%84%A1%E7%9A%84-double-object/" data-tooltip="Day 19 魁儡的 double object" aria-label="上一篇: Day 19 魁儡的 double object">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/mvc-%E6%9E%B6%E6%A7%8B%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B0%B1%E5%A4%A0%E7%94%A8%E4%BA%86/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fmvc-%25E6%259E%25B6%25E6%25A7%258B%25E6%2598%25AF%25E4%25B8%258D%25E6%2598%25AF%25E5%25B0%25B1%25E5%25A4%25A0%25E7%2594%25A8%25E4%25BA%2586%2F" aria-label="分享到 %s Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fmvc-%25E6%259E%25B6%25E6%25A7%258B%25E6%2598%25AF%25E4%25B8%258D%25E6%2598%25AF%25E5%25B0%25B1%25E5%25A4%25A0%25E7%2594%25A8%25E4%25BA%2586%2F" aria-label="分享到 %s Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fmvc-%25E6%259E%25B6%25E6%25A7%258B%25E6%2598%25AF%25E4%25B8%258D%25E6%2598%25AF%25E5%25B0%25B1%25E5%25A4%25A0%25E7%2594%25A8%25E4%25BA%2586%2F" aria-label="分享到 %s Google&#43;">
+          <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Robert.C</h4>
+    
+      <div id="about-card-bio">Ruby on Rails Developer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan, Taipei
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108270054348.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://robeeerto.tw/js/script-8lglxdix2nqhalxxm2bujhkcc8cctdrd5o5axonwhfzx2zqrer5facyn8.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

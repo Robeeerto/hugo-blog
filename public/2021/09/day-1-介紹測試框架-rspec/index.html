@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Day 1 介紹測試框架 RSpec",
+  
+  "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png",
+  
+  "datePublished": "2021-09-21T16:17:55+08:00",
+  "dateModified": "2021-09-21T16:17:55+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Robert.C",
+    
+    "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/robeeerto.tw\/2021\/09\/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Robert.C",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    }
+    
+  },
+  "description": "第一天，先認識 RSpec 吧！\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.88.1 with theme Tranquilpeak 0.5.0-BETA">
+<meta name="author" content="Robert.C">
+<meta name="keywords" content="">
+<meta name="description" content="第一天，先認識 RSpec 吧！">
+
+
+<meta property="og:description" content="第一天，先認識 RSpec 吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day 1 介紹測試框架 RSpec">
+<meta name="twitter:title" content="Day 1 介紹測試框架 RSpec">
+<meta property="og:url" content="https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/">
+<meta property="twitter:url" content="https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/">
+<meta property="og:site_name" content="Robert.C">
+<meta property="og:description" content="第一天，先認識 RSpec 吧！">
+<meta name="twitter:description" content="第一天，先認識 RSpec 吧！">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-09-21T16:17:55">
+  
+  
+    <meta property="article:modified_time" content="2021-09-21T16:17:55">
+  
+  
+  
+    
+      <meta property="article:section" content="2021 鐵人賽">
+    
+  
+  
+    
+      <meta property="article:tag" content="RSpec">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+
+
+
+    <title>Day 1 介紹測試框架 RSpec</title>
+
+    <link rel="icon" href="https://robeeerto.tw/images/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://robeeerto.tw/css/style-x4v5aep1xln8tw4u8b4utrzzm45rcnnq6emr4myqn5eka2yri56y1t7q.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-205530984-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://robeeerto.tw/" aria-label="去首頁">Robert.C</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://robeeerto.tw/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://robeeerto.tw/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Robert.C</h4>
+        
+          <h5 class="sidebar-profile-bio">Ruby on Rails Developer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robeeerto" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Day 1 介紹測試框架 RSpec
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-09-21T16:17:55&#43;08:00">
+        
+  九月 21, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://robeeerto.tw/categories/2021-%e9%90%b5%e4%ba%ba%e8%b3%bd">2021 鐵人賽</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>第一天，先認識 RSpec 吧！</p>
+<h1 id="table-of-contents">目錄</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#rspec-是什麼">RSpec 是什麼？</a></li>
+    <li><a href="#為什麼要測試程式碼">為什麼要測試程式碼？</a></li>
+    <li><a href="#rspec-的生態系">RSpec 的生態系</a></li>
+    <li><a href="#專案中的資料架構">專案中的資料架構</a></li>
+    <li><a href="#小結">小結</a></li>
+  </ul>
+</nav>
+
+<h1 id="rspec-是什麼">RSpec 是什麼？</h1>
+<ol>
+<li>是一款在 2005 年釋出的開放原始碼的測試函式庫</li>
+<li>最熱門的 Ruby Gem 之一，超過 5 億的下載量</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211630135.png" alt=""></p>
+<ol start="3">
+<li>最近的一次版本是 RSpec 3，在 2014 年釋出</li>
+<li>RSpec 是一種 DSL</li>
+</ol>
+<blockquote>
+<p>領域特定語言（英語：domain-specific language、DSL）指的是專注於某個應用程式領域的計算機語言
+RSpec 的語言是專注在測試方面，同時也是為了測試而存在
+DSL 舉例： HTML VimScript 等等</p>
+</blockquote>
+<h1 id="為什麼要測試程式碼">為什麼要測試程式碼？</h1>
+<ul>
+<li><strong>增加新功能時避免產生故障</strong>
+<ul>
+<li>新增功能時，只要根據原先的測試規格下去跑，就能知道結果</li>
+</ul>
+</li>
+<li><strong>提供規格給整個應用程式當做文件閱讀</strong>
+<ul>
+<li>有些複雜的應用程式，程式碼被模組化四散各地，這時候閱讀測試文件能夠快速掌握重點以及引用的模組</li>
+</ul>
+</li>
+<li><strong>單獨處理某些問題或是 Bug</strong>
+<ul>
+<li>測試的重點就是一次只測試一個方法或是簡單的功能 (Unit Test)</li>
+</ul>
+</li>
+<li><strong>提升程式碼品質，尤其在設計方面</strong>
+<ul>
+<li>後面會提到測試、開發、重構的循環，擁有測試的時候，你才有重構的勇氣</li>
+</ul>
+</li>
+<li><strong>縮短開發時程</strong>
+<ul>
+<li>測試文件若在開發前期就有穩固的基礎，你只需要確認程式碼能通過測試，基本上就有一定的穩定性</li>
+</ul>
+</li>
+</ul>
+<h1 id="rspec-的生態系">RSpec 的生態系</h1>
+<p>RSpec 本身包含了三種獨立的 Ruby Gem，雖然下載 RSpec 就會一起包給你了 👻</p>
+<ul>
+<li><strong>RSpec core</strong>
+<ul>
+<li>核心的函式庫，負責組織和執行測試的部分</li>
+</ul>
+</li>
+<li><strong>RSpec expections</strong>
+<ul>
+<li>配對語法 ( matcher ) 的函式庫，負責實現我們的例子</li>
+</ul>
+</li>
+<li><strong>RSpec mocks</strong>
+<ul>
+<li>一個用來假裝物件或類別行為的函式庫</li>
+</ul>
+</li>
+</ul>
+<p>RSpec 本身也可以和其他函式庫的 mocks &amp; expections 整合</p>
+<p><strong>Rspec-rails</strong> 則是整合了 Ruby on Rails 和 RSpec 而衍生出來的一個 Gem</p>
+<h1 id="專案中的資料架構">專案中的資料架構</h1>
+<ul>
+<li><strong>都會看到一個 <code>spec</code> 的資料夾中存放所有測試的檔</strong></li>
+<li><strong>在裡面會看到類似模仿專案架構的資料名稱</strong></li>
+<li><strong>RSpec 的檔案都會以 <code>_spec.rb</code> 當做結尾，讓測試時能夠找到他</strong></li>
+<li><strong>舉例：一個 <code>User</code> Class 就會有一個 <code>user_spec.rb</code> 的檔案在 <code>spec</code> 資料夾裡面</strong></li>
+</ul>
+<h1 id="小結">小結</h1>
+<p>今天非常簡單的介紹了 RSpec 這個測試框架，也可以當作整個鐵人賽的小目錄。</p>
+<p>基本上都會以上面提過的東西去做延伸，後面會加入一些範例的程式碼來做舉例，希望可以讓不熟悉 RSpec 的人能夠對於這個測試框架有所理解和幫助！</p>
+<p>明天我將會介紹測試的種類，因為一個龐大的應用程式對於測試的分類也有所不同，這樣才能將執行的效率大幅提升！</p>
+              
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://robeeerto.tw/tags/rspec/">RSpec</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/day-2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E7%A8%AE%E9%A1%9E/" data-tooltip="Day 2 測試的種類" aria-label="下一篇: Day 2 測試的種類">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/%E7%B6%B2%E9%9A%9B%E7%B6%B2%E8%B7%AF%E6%98%AF%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C%E7%9A%84/" data-tooltip="網際網路是如何運作的？" aria-label="上一篇: 網際網路是如何運作的？">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/robeeerto.tw\/2021\/09\/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec\/';
+        
+          this.page.identifier = '\/2021\/09\/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-robeeerto-github-io';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Robert.C. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/day-2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E7%A8%AE%E9%A1%9E/" data-tooltip="Day 2 測試的種類" aria-label="下一篇: Day 2 測試的種類">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/%E7%B6%B2%E9%9A%9B%E7%B6%B2%E8%B7%AF%E6%98%AF%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C%E7%9A%84/" data-tooltip="網際網路是如何運作的？" aria-label="上一篇: 網際網路是如何運作的？">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/09/day-1-%E4%BB%8B%E7%B4%B9%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-rspec/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frobeeerto.tw%2F2021%2F09%2Fday-1-%25E4%25BB%258B%25E7%25B4%25B9%25E6%25B8%25AC%25E8%25A9%25A6%25E6%25A1%2586%25E6%259E%25B6-rspec%2F" aria-label="分享到 %s Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Frobeeerto.tw%2F2021%2F09%2Fday-1-%25E4%25BB%258B%25E7%25B4%25B9%25E6%25B8%25AC%25E8%25A9%25A6%25E6%25A1%2586%25E6%259E%25B6-rspec%2F" aria-label="分享到 %s Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Frobeeerto.tw%2F2021%2F09%2Fday-1-%25E4%25BB%258B%25E7%25B4%25B9%25E6%25B8%25AC%25E8%25A9%25A6%25E6%25A1%2586%25E6%259E%25B6-rspec%2F" aria-label="分享到 %s Google&#43;">
+          <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Robert.C</h4>
+    
+      <div id="about-card-bio">Ruby on Rails Developer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan, Taipei
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108270054348.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://robeeerto.tw/js/script-8lglxdix2nqhalxxm2bujhkcc8cctdrd5o5axonwhfzx2zqrer5facyn8.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

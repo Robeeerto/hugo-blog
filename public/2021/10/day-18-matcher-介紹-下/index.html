@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Day 18 Matcher 介紹 (下)",
+  
+  "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png",
+  
+  "datePublished": "2021-10-02T16:05:36+08:00",
+  "dateModified": "2021-10-02T16:05:36+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Robert.C",
+    
+    "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/robeeerto.tw\/2021\/10\/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Robert.C",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    }
+    
+  },
+  "description": "Matcher 最終章！！！\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.88.1 with theme Tranquilpeak 0.5.0-BETA">
+<meta name="author" content="Robert.C">
+<meta name="keywords" content="">
+<meta name="description" content="Matcher 最終章！！！">
+
+
+<meta property="og:description" content="Matcher 最終章！！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day 18 Matcher 介紹 (下)">
+<meta name="twitter:title" content="Day 18 Matcher 介紹 (下)">
+<meta property="og:url" content="https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/">
+<meta property="twitter:url" content="https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/">
+<meta property="og:site_name" content="Robert.C">
+<meta property="og:description" content="Matcher 最終章！！！">
+<meta name="twitter:description" content="Matcher 最終章！！！">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-10-02T16:05:36">
+  
+  
+    <meta property="article:modified_time" content="2021-10-02T16:05:36">
+  
+  
+  
+    
+      <meta property="article:section" content="2021 鐵人賽">
+    
+  
+  
+    
+      <meta property="article:tag" content="RSpec">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+
+
+
+    <title>Day 18 Matcher 介紹 (下)</title>
+
+    <link rel="icon" href="https://robeeerto.tw/images/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://robeeerto.tw/css/style-x4v5aep1xln8tw4u8b4utrzzm45rcnnq6emr4myqn5eka2yri56y1t7q.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-205530984-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://robeeerto.tw/" aria-label="去首頁">Robert.C</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://robeeerto.tw/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://robeeerto.tw/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Robert.C</h4>
+        
+          <h5 class="sidebar-profile-bio">Ruby on Rails Developer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robeeerto" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Day 18 Matcher 介紹 (下)
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-10-02T16:05:36&#43;08:00">
+        
+  十月 2, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://robeeerto.tw/categories/2021-%e9%90%b5%e4%ba%ba%e8%b3%bd">2021 鐵人賽</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>Matcher 最終章！！！</p>
+<h1 id="table-of-contents">目錄</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#have_attributes-matcher">have_attributes matcher</a></li>
+    <li><a href="#include-matcher">include matcher</a></li>
+    <li><a href="#raise_error-matcher">raise_error matcher</a></li>
+    <li><a href="#respond_to-matcher">respond_to matcher</a></li>
+    <li><a href="#satisfy-matcher">satisfy matcher</a></li>
+    <li><a href="#compound-expectation">compound expectation</a></li>
+    <li><a href="#小結">小結</a></li>
+  </ul>
+</nav>
+
+<p>今天將一口氣把剩下比較常用的 <code>Matcher</code> 一併介紹起來！</p>
+<h1 id="have_attributes-matcher">have_attributes matcher</h1>
+<p>這個 <code>Matcher</code> 很清楚明瞭的告訴你是來測驗物件的屬性的！</p>
+<p>我們直接用範例來介紹一下～</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>have_attributes</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">class Burger
+  attr_reader :meat, :cheese
+  
+  def initialize(meat, cheese)
+    @meat = meat
+    @cheese = cheese
+  end
+end
+
+RSpec.describe &#34;have_attributes matcher&#34; do
+  
+  describe Burger.new(&#34;Beef&#34;, &#34;Cheddar&#34;)
+    it &#34;checks attribute and value&#34; do
+      expect(subject).to have_attributes(meat: &#34;Beef&#34;)
+      expect(subject).to have_attributes(cheese: &#34;Cheddar&#34;)
+    end
+    
+    it { is_expected.to have_attributes(meat: &#34;Beef&#34;) }
+    it { is_expected.to have_attributes(cheese: &#34;Cheddar&#34;) }
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>我們針對漢堡這個類別來進行測試，分別檢驗他的 <code>meat</code> &amp; <code>cheese</code> 屬性所給予的值！</p>
+<p>進而判斷這個屬性是否存在，其實這個真的很簡單，也沒有真的比較特殊的寫法，所以就這樣簡單的用範例來介紹一下～</p>
+<h1 id="include-matcher">include matcher</h1>
+<p>接下來這個對於有學過 Ruby 的人來說，應該是超級好用的一個語法！</p>
+<p>而在 RSpec 中也是異曲同工之妙，就是檢查 <code>字串</code> <code>陣列</code> <code>Hash</code> 中，所包含的字串、數字或是 <code>key &amp; value</code> 這樣的用法！</p>
+<p>我們就用範例來更清楚的了解一下吧！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>include matcher</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe &#34;include matcher&#34; do
+
+  describe &#34;yummy burger&#34; do
+    it &#34;checks substring&#34; do
+       expect(subject).to include(&#34;yummy&#34;)
+       expect(subject).to include(&#34;burger&#34;)
+       expect(subject).to include(&#34;bur&#34;)
+    end
+  end
+  
+  describe [1, 5, 7] do
+    it &#34;checks inclusion value in the array&#34; do
+      expect(subject).to include(1) 
+      expect(subject).to include(5) 
+      expect(subject).to include(7) 
+      expect(subject).to include(7, 5) 
+    end
+  end
+  
+  describe { t: 5, y: 7} do
+    it &#34;checks key or key value pair&#34; do
+      expect(subject).to include(:t) 
+      expect(subject).to include(:t, :y)
+      expect(subject).to include(t: 5)
+    end
+    
+    it { is_expected.to include(:y)}
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>這個的用法也很簡單，有個重點就是他不看順序的，主要是看內容物來覺得測試通過與否！</p>
+<h1 id="raise_error-matcher">raise_error matcher</h1>
+<p>這個 <code>Matcher</code> 就是拿來測試噴錯的結果的，沒錯！工程師當然要能夠預期錯誤的結果 ( 雖然工作上大部分都沒有預期到&hellip; )</p>
+<p>如果是寫在 Rails 的專案中，確實還蠻常使用到的，在某些特殊的情況需要加入 <code>begin...rescue</code> 時，就會寫到了～</p>
+<p>那我們還是來簡單的示範一下狀況！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>raise error</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe &#34;raise error matcher&#34; do
+  
+  def wrong_method 
+    gggg
+  end
+
+  it &#34;check error being raised&#34; do
+    expect { wrong_method }.to raise_error
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>首先講寫法上面，記得我們之前提過，若是要執行方法等等，要記得使用 <code>{ }</code> 來做執行的動作～</p>
+<p>再來是你能預期這個方法會噴什麼樣的錯誤嗎？</p>
+<p>我們先看看測試的結果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110021610541.png" alt=""></p>
+<p>通過了測試，但是官方希望你可以更詳細的解釋這是一個什麼樣的 Error，所以我們只要在後方加上：</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">expect { wrong_method }.to raise_error(NameError)
+</code></pre><p>這樣就可以看到正常的 Output 了，當然你也可以在設定檔裡面關閉這個提醒，但還是寫的仔細好一些～</p>
+<p>甚至我們還可以自己建造錯誤類別來繼承原本的錯誤類別，執行自己的錯誤哈哈</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>raise error</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">class CustomError &lt; StandardError; end
+
+it &#34;rails himself&#34; do
+  expect { raise CustomError }.to raise_error(CustomError)
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h1 id="respond_to-matcher">respond_to matcher</h1>
+<p>這個 <code>Matcher</code> 主要在測試一個 API 的接口所回應的方法！</p>
+<p>也可以說成類別啦，一個類別會有的方法，以及所需的參數等等～</p>
+<p>我們看看範例就能了解囉～我們先建造一些類別來使用！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>respond_to matcher</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">class Burger
+  def eat
+   p &#34;yummy!!!!&#34; 
+  end
+  
+  def discard
+   p &#34;So bad...&#34; 
+  end
+  
+  def buy(money)
+   p &#34;i will spend #{money} to buy this good shit!!&#34; 
+  end
+end
+
+
+RSpec.describe &#34;respond_to matcher&#34; do
+  
+  describe Burger do
+    it &#34;checks an object respond method&#34; do
+      expect(subject).to respond_to(:eat) 
+      expect(subject).to respond_to(:eat, :discard)
+      expect(subject).to respond_to(:eat, :discard, :buy)
+    end
+    
+    it &#34;checks method and arguments&#34; do
+        expect(subject).to respond_to(:buy).with(1).arguments 
+    end  
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>寫起來有點多，但其實就是測試這個類別回應的公開方法而已，注意！！私有方法是沒辦法被 <code>respond_to</code> 的喔～</p>
+<p>畢竟都已經是 <code>private</code> 還可以公開的回應，那好像也怪怪的！</p>
+<h1 id="satisfy-matcher">satisfy matcher</h1>
+<p>這個 <code>Matcher</code> 超級好用，而且彈性超大～</p>
+<p>不像前幾個 <code>Matcher</code> 基本上都是 Ruby 的語法轉型變成 RSpec 的語法，這個是獨有的！！！</p>
+<p>我們先看看示範：</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>satisfy matcher</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe &#34;satisfy matcher&#34; do
+  subject { &#39;level&#39; }
+  
+  it &#34;is a palindrome&#34; do
+    expect(subject).to satisfy { |value| value == value.reverse } 
+  end
+  
+  it &#34;can do something in block&#34; do
+    expect(10).to satisfy { |value| value / 2 == 5 } 
+  end
+  
+  it &#34;can add custom message&#34; do
+    expect(100).to satisfy(&#34;bigger than 50&#34;) do |value|
+      value &gt; 50
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>他就是一個只要能夠在 block 裡面滿足條件，就可以通過測試的一個好東西！</p>
+<p>彈性很高，可以在裡面寫入很多 Ruby 的語法，在測試的時候也比較不會綁手綁腳的。</p>
+<p>客製化訊息也會在 Output 上一併出現，這個 <code>Matcher</code> 先推推！</p>
+<h1 id="compound-expectation">compound expectation</h1>
+<p>這個就是一個 <code>expectation</code> 而且蠻無聊的，想說就也提一下好了！</p>
+<p>簡單來說就是合成你的 RSpec 語法，要 <code>and &amp;&amp;</code> 或是 <code>or ||</code> 對比上你的複數 <code>Matcher</code> 才能夠通過～</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>compound expectation</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe 30 do
+  it &#34;test for multiple matchers&#34; do
+    expect(subject).to be_even.and be &gt; 25
+  end
+  
+  describe [1, 5, 7] do
+    it &#34;can use or&#34; do
+      expect(subject.sample).to eq(1).or eq(5).or eq(7)  
+    end
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>就如範例所示，可以串接你的 <code>Matcher</code> 然後使用 <code>and</code> 或是 <code>or</code> 方法來串聯！</p>
+<h1 id="小結">小結</h1>
+<p>終於結束了滿滿的 <code>Matcher</code> 海，接下來就進入到一開始我最難理解的 <code>double</code> 以及 <code>stub</code> 的章節了！</p>
+<p>也是我覺得超級好用的地方，真的能夠辦到很多有趣的事情！</p>
+              
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://robeeerto.tw/tags/rspec/">RSpec</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-19-%E9%AD%81%E5%84%A1%E7%9A%84-double-object/" data-tooltip="Day 19 魁儡的 double object" aria-label="下一篇: Day 19 魁儡的 double object">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-17-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%AD/" data-tooltip="Day 17 Matcher 介紹 (中)" aria-label="上一篇: Day 17 Matcher 介紹 (中)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/robeeerto.tw\/2021\/10\/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B\/';
+        
+          this.page.identifier = '\/2021\/10\/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-robeeerto-github-io';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Robert.C. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-19-%E9%AD%81%E5%84%A1%E7%9A%84-double-object/" data-tooltip="Day 19 魁儡的 double object" aria-label="下一篇: Day 19 魁儡的 double object">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-17-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%AD/" data-tooltip="Day 17 Matcher 介紹 (中)" aria-label="上一篇: Day 17 Matcher 介紹 (中)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-18-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8B/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-18-matcher-%25E4%25BB%258B%25E7%25B4%25B9-%25E4%25B8%258B%2F" aria-label="分享到 %s Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-18-matcher-%25E4%25BB%258B%25E7%25B4%25B9-%25E4%25B8%258B%2F" aria-label="分享到 %s Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-18-matcher-%25E4%25BB%258B%25E7%25B4%25B9-%25E4%25B8%258B%2F" aria-label="分享到 %s Google&#43;">
+          <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Robert.C</h4>
+    
+      <div id="about-card-bio">Ruby on Rails Developer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan, Taipei
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108270054348.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://robeeerto.tw/js/script-8lglxdix2nqhalxxm2bujhkcc8cctdrd5o5axonwhfzx2zqrer5facyn8.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

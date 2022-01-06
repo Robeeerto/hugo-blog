@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Day 24 介紹 Capybara 及設定",
+  
+  "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png",
+  
+  "datePublished": "2021-10-08T18:32:02+08:00",
+  "dateModified": "2021-10-08T18:32:02+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Robert.C",
+    
+    "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/robeeerto.tw\/2021\/10\/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Robert.C",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    }
+    
+  },
+  "description": "超常用的 Capybara！\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.88.1 with theme Tranquilpeak 0.5.0-BETA">
+<meta name="author" content="Robert.C">
+<meta name="keywords" content="">
+<meta name="description" content="超常用的 Capybara！">
+
+
+<meta property="og:description" content="超常用的 Capybara！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day 24 介紹 Capybara 及設定">
+<meta name="twitter:title" content="Day 24 介紹 Capybara 及設定">
+<meta property="og:url" content="https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/">
+<meta property="twitter:url" content="https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/">
+<meta property="og:site_name" content="Robert.C">
+<meta property="og:description" content="超常用的 Capybara！">
+<meta name="twitter:description" content="超常用的 Capybara！">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-10-08T18:32:02">
+  
+  
+    <meta property="article:modified_time" content="2021-10-08T18:32:02">
+  
+  
+  
+    
+      <meta property="article:section" content="2021 鐵人賽">
+    
+  
+  
+    
+      <meta property="article:tag" content="RSpec">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+
+
+
+    <title>Day 24 介紹 Capybara 及設定</title>
+
+    <link rel="icon" href="https://robeeerto.tw/images/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://robeeerto.tw/css/style-x4v5aep1xln8tw4u8b4utrzzm45rcnnq6emr4myqn5eka2yri56y1t7q.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-205530984-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://robeeerto.tw/" aria-label="去首頁">Robert.C</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://robeeerto.tw/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://robeeerto.tw/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Robert.C</h4>
+        
+          <h5 class="sidebar-profile-bio">Ruby on Rails Developer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robeeerto" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Day 24 介紹 Capybara 及設定
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-10-08T18:32:02&#43;08:00">
+        
+  十月 8, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://robeeerto.tw/categories/2021-%e9%90%b5%e4%ba%ba%e8%b3%bd">2021 鐵人賽</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>超常用的 Capybara！</p>
+<h1 id="table-of-contents">目錄</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#capybara-的優點">Capybara 的優點</a></li>
+    <li><a href="#實際使用">實際使用</a></li>
+    <li><a href="#使用情境">使用情境</a></li>
+    <li><a href="#常見問題">常見問題</a></li>
+    <li><a href="#小結">小結</a></li>
+  </ul>
+</nav>
+
+<p>在我們 new 出一個全新的 Rails 專案時，會在 Gemfile 裡面看到預設的測試套件，分別是：<code>capybara</code> &amp; <code>selenium-webdriver</code> &amp; <code>webdrivers</code>。</p>
+<p>後面兩個從名字上就可以很明顯的感受的，像是要操縱網頁的概念，而事實也是如此喔！</p>
+<p>Capybara 本身就是模仿一個真實使用者來測試你的應用程式，所以我們會需要有 <code>selenium</code> 這樣的工具來幫助我們自動化的啟動瀏覽器。</p>
+<p>有點像我們撰寫程式語言，來操控一個虛擬的人物和瀏覽器互動的概念，從等等的程式碼就能感受得到了！</p>
+<p>基於 Rails 專案本身就有安裝 capybara 了，我們就會直接用 RSpec 的視角來講一下這個東西該怎麼使用。</p>
+<h1 id="capybara-的優點">Capybara 的優點</h1>
+<p>為什麼 Rails 會選擇 Capybara 做為預設的套件呢？</p>
+<p>其實我也不清楚，但我自己有幾個覺得還蠻不錯的地方可以分享一下！</p>
+<p><strong>1. 不需要特別的 set up</strong></p>
+<p>這件事情對於我來說就很好，因為像是這種要脫離 Rails 專案設定一些關於網際網路的參數，或是一些看起來很麻煩的事情。</p>
+<p>其實都會打斷開發的時程，所以有一個好的套件，可以讓你即插即用是很讚的一件事！</p>
+<p><strong>2. 直觀的 API 像人類的語言</strong></p>
+<p>等等示範的程式碼裡面，就會看到很有趣的 capybara API，都是一些超級簡單的英文，非常直觀。</p>
+<p>例如：訪問一個網站</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">visit ( 訪問的 url )
+</code></pre><p>這樣就會模擬一個用戶造訪這個網站，是不是看起來真的非常直白呢？</p>
+<p><strong>3. 可以無痛切換無頭模式以及實際瀏覽器</strong></p>
+<p>一般來說 capybara 會在無頭模式下進行測試網站，而無頭模式的瀏覽器是什麼意思？</p>
+<p>無頭瀏覽器就是沒有我們現在使用的這些介面，通常透過 command line 來進行溝通。</p>
+<p>而切換瀏覽器模式就是，我們可以在測試的時候讓他彈出瀏覽器的畫面，並且在你面前輸入帳號密碼等等，以便測試！</p>
+<p>而 Capybara 可以讓你在這兩者間作切換，但不需要更動你原先的程式碼。</p>
+<p>上面是三個我自己覺得很厲害的地方，可能因為 capybara 實在是太實用了吧，就被 Rails 官方給綁定了～</p>
+<h1 id="實際使用">實際使用</h1>
+<p>在 RSpec 中，前天有提到的 Feature test，重要度非常高，就是使用 capybara 來完整整個流程。</p>
+<p>那我們要如何在 RSpec 中使用它呢？</p>
+<p>我們只要給他正確的 tag 就可以了。</p>
+<p>像這樣：</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">RSpec.feature 'test something', type: :feature do
+ ....
+end
+</code></pre><p>使用 <code>RSpec.feature</code>  並加入了 <code>type: :feature / type: :system</code> 就可以使用了喔！</p>
+<p>有沒有真的很符合我提到的優點呢？ 基本上真的不太需要什麼特別的設定就可以簡單地使用了喔！</p>
+<h1 id="使用情境">使用情境</h1>
+<p>接著會用一些簡單的程式碼讓人可以快速理解 capybara 在做些什麼，以及 feature test 到底在做些什麼呢？</p>
+<p>假設我們要針對 <code>登入</code> 這項功能來做 feature test，我們可以先試想一下整個情境以及流程。</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby="># 進入登入頁面 &gt; 填寫帳號以及密碼 &gt; 登入成功
+</code></pre><p>這邊先不考慮失敗的情境，因為其實就是反過來而已！</p>
+<p>我們先上程式碼再慢慢解說：</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>Feature Test</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.feature &#39;Sign In&#39;, type: :feature do
+  
+  before do
+    create(:user)
+    # 先讓資料庫有這筆資料
+  end
+
+  scenario &#39;sign in process&#39; do
+    visit &#39;/sessions/new&#39;
+    within(&#34;#session&#34;) do
+      fill_in &#39;Email&#39;, with: &#39;user@example.com&#39;
+      fill_in &#39;Password&#39;, with: &#39;password&#39;
+    end
+    click_button &#39;Sign in&#39;
+    expect(page).to have_content &#39;Success&#39;
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>這邊的 <code>scenario</code> 等同於之前我們使用的 <code>it</code>， 但語意更明確一些像是創造一個情境的概念。</p>
+<p>接著我們看到第 9 行的程式碼，拜訪 <code>/sessins/new</code> 這個網站，但這邊的寫法不太好，其實我們可以用 rails 的 <code>routes prefix</code> 來造訪網站喔！</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">visit new_user_session # users/sessions#new
+</code></pre><p>而看到第 10 行 <code>within('#session')</code> 是找到這個表格，而 <code>#session</code> 這就是我們熟悉的 CSS 選擇器找 ID 的用法。</p>
+<p>進入表格後呢，找到 <code>Email</code> 以及 <code>Password</code> 這兩個欄位並且填入我們事先創建好的 User 的帳號密碼！</p>
+<p>在到 第 14 行，按下登入按鈕，並且期待頁面會有 <code>Success</code> 的文字出現！</p>
+<p>這樣算是完成了一個簡易的 feature test，這邊的示範也呼應了我提到的第二個優點，Capybara 使用超級簡單的英文，讓呼叫 API 的過程變得流暢和舒服！</p>
+<p>所以我們這次的測試流程是：</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby="># 拜訪登入網站 &gt; 找到登入的表格 &gt; 填寫帳號密碼 &gt; 按下登入按鈕 &gt; 期待看到成功訊息！
+</code></pre><p>因為是自動化的測試程序，所以機器其實比我們想像的還要笨，你必要要給予他很瑣碎的指令，你可以往上拉看到，以人類的我們來說想像的測試流程非常簡便。</p>
+<p>是因為人類的腦袋幫助我們節省了很多習以為常的事情，但對於寫程式來說，這些都是要考慮進去的喔！</p>
+<h1 id="常見問題">常見問題</h1>
+<p><strong>1. 我想看到瀏覽器彈出來的樣子！</strong></p>
+<p>我們只需要在 <code>spec_helper.rb</code> 裡面加入：</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">Capybara.javascript_driver = :selenium_chrome
+</code></pre><p>他就會在執行 feature test 的時候，從無頭模式切換到瀏覽器模式喔！</p>
+<p>第一次看到的時候真的覺得超酷的，他會自動的填寫帳號密碼等等，真的像一個真實的使用者！</p>
+<p><strong>2. 為什麼我的頁面找不到按鈕了？</strong></p>
+<p>常常會遇到在 <code>click_button</code> 的時候找不到按鈕的情形。</p>
+<p>最常遇到的有三種可能：</p>
+<p><strong>第一種</strong>：你的按鈕是跟隨著資料出現的，例如：編輯這顆按鈕，在你沒有資料的情境下，畫面上就真的沒有，所以要記得在 <code>before do</code> 的時候先建立好相關的資料，讓測試的情境更寫實喔！</p>
+<p><strong>第二種</strong>：你的按鈕在 <code>mobile</code> 的情形下會消失，有些專案可能會需要在 <code>mobile</code> 的情境時 hidden 某些按鈕，那就會造成 capybara 找不到它，所以我們也可以設定在測試時的視窗大小喔！</p>
+<p>一樣在 <code>spec_helper.rb</code> 加入：</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">config.before(:each, js: true) do
+  Capybara.page.current_window.resize_to(1080, 1920)
+end
+</code></pre><p>這樣在每次測試前，都會以這樣的視窗太小在進行測試。</p>
+<p><strong>第三種</strong>：你的按鈕是伴隨著事件出現的，例如你點了某個按鈕後，會利用 Ajax 到後端並且 render 出新的按鈕，但對於 capybara 來說，一切都太快了，他還沒等到按鈕出現，就已經在 click 了，自然而然就找不到。</p>
+<p>所以我們也可以在 <code>spec_helper.rb</code> 加入：</p>
+<pre tabindex="0"><code class="language-ruby=" data-lang="ruby=">Capybara.default_max_wait_time = 5
+</code></pre><p>其實原先的 default 是兩秒，但我們可以提高秒數，來試試看會不會通過測試！</p>
+<p><strong>3. 怎麼找我要的元素？</strong></p>
+<p>capybara 有提供 css selector 以及 xpath 兩種方式來找到網頁上的元素，當你找不到的時候，可以檢查是不是資料在測試前寫入的順序不對，或是關聯沒建立好等等。</p>
+<h1 id="小結">小結</h1>
+<p>今天的 capybara 就介紹到這邊，關於他的使用方法實在是太多了，但在官方文件都有詳細的說明，各個方法要如何使用。</p>
+<p>但大部分都脫離不了以使用者角度出發的，拜訪網站、點擊按鈕、填寫等等</p>
+<p>也有一些有趣的小功能，說不定會在你需要的時候使用到喔！</p>
+              
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://robeeerto.tw/tags/rspec/">RSpec</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-25-%E7%94%A8-webmock-vcr-%E4%BE%86%E5%AF%A6%E4%BD%9C%E6%B8%AC%E8%A9%A6/" data-tooltip="Day 25 用 WebMock &#43; VCR 來實作測試" aria-label="下一篇: Day 25 用 WebMock &#43; VCR 來實作測試">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-23-%E4%BB%8B%E7%B4%B9-factorybot-rails-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" data-tooltip="Day 23 介紹 FactoryBot Rails 及設定" aria-label="上一篇: Day 23 介紹 FactoryBot Rails 及設定">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/robeeerto.tw\/2021\/10\/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A\/';
+        
+          this.page.identifier = '\/2021\/10\/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-robeeerto-github-io';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Robert.C. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-25-%E7%94%A8-webmock-vcr-%E4%BE%86%E5%AF%A6%E4%BD%9C%E6%B8%AC%E8%A9%A6/" data-tooltip="Day 25 用 WebMock &#43; VCR 來實作測試" aria-label="下一篇: Day 25 用 WebMock &#43; VCR 來實作測試">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-23-%E4%BB%8B%E7%B4%B9-factorybot-rails-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" data-tooltip="Day 23 介紹 FactoryBot Rails 及設定" aria-label="上一篇: Day 23 介紹 FactoryBot Rails 及設定">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-24-%E4%BB%8B%E7%B4%B9-capybara-%E5%8F%8A%E8%A8%AD%E5%AE%9A/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-24-%25E4%25BB%258B%25E7%25B4%25B9-capybara-%25E5%258F%258A%25E8%25A8%25AD%25E5%25AE%259A%2F" aria-label="分享到 %s Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-24-%25E4%25BB%258B%25E7%25B4%25B9-capybara-%25E5%258F%258A%25E8%25A8%25AD%25E5%25AE%259A%2F" aria-label="分享到 %s Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-24-%25E4%25BB%258B%25E7%25B4%25B9-capybara-%25E5%258F%258A%25E8%25A8%25AD%25E5%25AE%259A%2F" aria-label="分享到 %s Google&#43;">
+          <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Robert.C</h4>
+    
+      <div id="about-card-bio">Ruby on Rails Developer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan, Taipei
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108270054348.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://robeeerto.tw/js/script-8lglxdix2nqhalxxm2bujhkcc8cctdrd5o5axonwhfzx2zqrer5facyn8.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

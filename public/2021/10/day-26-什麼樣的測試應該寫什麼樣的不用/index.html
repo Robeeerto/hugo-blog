@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Day 26 什麼樣的測試應該寫，什麼樣的不用？",
+  
+  "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png",
+  
+  "datePublished": "2021-10-10T23:11:20+08:00",
+  "dateModified": "2021-10-10T23:11:20+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Robert.C",
+    
+    "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/robeeerto.tw\/2021\/10\/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Robert.C",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    }
+    
+  },
+  "description": "什麼都要寫測試嗎？\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.88.1 with theme Tranquilpeak 0.5.0-BETA">
+<meta name="author" content="Robert.C">
+<meta name="keywords" content="">
+<meta name="description" content="什麼都要寫測試嗎？">
+
+
+<meta property="og:description" content="什麼都要寫測試嗎？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day 26 什麼樣的測試應該寫，什麼樣的不用？">
+<meta name="twitter:title" content="Day 26 什麼樣的測試應該寫，什麼樣的不用？">
+<meta property="og:url" content="https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/">
+<meta property="twitter:url" content="https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/">
+<meta property="og:site_name" content="Robert.C">
+<meta property="og:description" content="什麼都要寫測試嗎？">
+<meta name="twitter:description" content="什麼都要寫測試嗎？">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-10-10T23:11:20">
+  
+  
+    <meta property="article:modified_time" content="2021-10-10T23:11:20">
+  
+  
+  
+    
+      <meta property="article:section" content="2021 鐵人賽">
+    
+  
+  
+    
+      <meta property="article:tag" content="RSpec">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+
+
+
+    <title>Day 26 什麼樣的測試應該寫，什麼樣的不用？</title>
+
+    <link rel="icon" href="https://robeeerto.tw/images/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://robeeerto.tw/css/style-x4v5aep1xln8tw4u8b4utrzzm45rcnnq6emr4myqn5eka2yri56y1t7q.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-205530984-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://robeeerto.tw/" aria-label="去首頁">Robert.C</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://robeeerto.tw/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://robeeerto.tw/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Robert.C</h4>
+        
+          <h5 class="sidebar-profile-bio">Ruby on Rails Developer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robeeerto" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Day 26 什麼樣的測試應該寫，什麼樣的不用？
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-10-10T23:11:20&#43;08:00">
+        
+  十月 10, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://robeeerto.tw/categories/2021-%e9%90%b5%e4%ba%ba%e8%b3%bd">2021 鐵人賽</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>什麼都要寫測試嗎？</p>
+<h1 id="table-of-contents">目錄</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#決定要寫什麼樣的測試">決定要寫什麼樣的測試</a></li>
+    <li><a href="#我一定會寫的兩種測試">我一定會寫的兩種測試</a></li>
+    <li><a href="#測試術語">測試術語</a></li>
+    <li><a href="#rspec-對應的測試術語">RSpec 對應的測試術語</a></li>
+    <li><a href="#我覺得意義不大的測試">我覺得意義不大的測試</a></li>
+    <li><a href="#小結">小結</a></li>
+  </ul>
+</nav>
+
+<h1 id="決定要寫什麼樣的測試">決定要寫什麼樣的測試</h1>
+<p>工程師可能會寫很多不同種類的測試。在 RSpec 裡面，有 Model spec，Feature spec，Controller spec，Route spec 等等，你需要掌握所有不同類型的測試嗎？當然不，那應該要跳過哪些測試呢？</p>
+<p>你可能會想，測試不就是應該要覆蓋率 100 % 嗎？越多越好，但事實是這樣嗎？會不會其實不需要真的這麼做，只需要掌握幾種重要的測試就好了！</p>
+<h1 id="我一定會寫的兩種測試">我一定會寫的兩種測試</h1>
+<p>通常有兩種測試是我一定會寫的，就是 Model 以及 Feature 的測試，我會詳細解釋一下為什麼？</p>
+<p>Model spec 是相對孤立的，一個 Model spec 將測試我的應用程式中特定的行為或是方法，例如有一個：Custom Model，Model spec 讓我知道我的功能是可以被切成很細微的粒子，同時給予我信心，因為這些方法都會常常被的使用到，不論是在 Controller 或是 View。</p>
+<p>例如，我有一個方法是回傳客戶的付款總額，那我就會替這個方法寫一個測試。</p>
+<p>確保應用程式的行為，在微觀的情況下，每一個方法都能經得起測試，並且正確的執行！</p>
+<p>而 Feature spec 呢？剛剛說過，Model spec 是很孤立的，但 Feature spec 則相反；他是一個集合體，驗收整個應用程式的測試，Feature spec 讓我相信所有的東西都能一起工作，例如：如果我的 Custom resource 有 CRUD 的功能，我就為了新增、修改、刪除寫 Feature spec！</p>
+<h1 id="測試術語">測試術語</h1>
+<p>在測試的領域中，術語並沒有達到共識，例如：有些人可能覺得 end-to-end 的測試、Feature spec 、驗收測試是指同一件事，有些人可能覺得這三種是完全不同的測試類型。</p>
+<p>這對於寫測試意味著什麼？假設你看到 end-to-end 測試的引用和你對於 end-to-end 的理解不一致的話，這並不代表你的理解是錯誤的，因為並沒有正確的答案，在測試的領域中很多東西都很模糊，並不是每個人都用相同且確切的術語在討論相同的概念，但我認為這種溝通上的挑戰是有幫助的，否則人們可能會因為明顯的差異而受到干擾！</p>
+<h1 id="rspec-對應的測試術語">RSpec 對應的測試術語</h1>
+<p>Model spec 和所謂的驗收測試是如何在 RSpec 中對應呢？ Model spec 是活在 <code>spec/models</code> 目錄中的測試。為了寫 Model spec 除了原生的 RSpec 其他什麼都不需要。外界所提到的驗收測試 ( 你可以說是 end-to-end 測試 ) 在 RSpec 中都被稱為 Feature spec。由於 Feature spec 是通過瀏覽器來行使功能的，因此之前提過的 Capybara 就會是必要的！</p>
+<p>順便說一下，為什麼 RSpec 測試被稱為 <code>規格(spec)</code> 而不是 <code>測試 (test)</code>？這個想法是，每個 RSpec 文件是一個 <code>可執行的規範</code>。在 RSpec 術語中，每個測試案例都被稱作是一個 example 例子，一個關於該功能應該如何表現的例子。一堆的例子成就了一個規範。但其實這是在英文上的差別啦，在台灣大家都還是說測試測試，不太會有人硬要說這是一個規格，除非在寫文章強調正確性才會，或是要寫成英文的話，就會用 <code>spec</code> 而不是 <code>test</code> 。</p>
+<h1 id="我覺得意義不大的測試">我覺得意義不大的測試</h1>
+<p>我自己覺得 View spec、Route spec、Request spec、Controller spec 的意義就不太大，讓我們分開來討論一下。</p>
+<p><strong>Request spec、Controller spec</strong></p>
+<p>首先是術語：Request spec、Controller spec 是兩件非常不同的事情，儘管為了我們的目的，我們可以把這兩個看作是同一個事情，而且 RSpec 官方也在推廣 Request spec 這件事，所以事實是， Request spec 是新的用法、也是一個新的術語。</p>
+<p>不太寫這個的原因是，我們都希望 Controller 可以越瘦越好，所以其實 Controller 本身並沒有什麼商業邏輯，通常是都是調用 Model 的實體在做事情，所以不論是 Request spec 或是 Controller spec 都是可以被 Feature spec 給覆蓋的，所以我更傾向讓 Feature spec 去做這件事！</p>
+<p><strong>View spec、Route spec</strong></p>
+<p>說實在我不知道 View spec 的價值是什麼，我也沒有看過哪些教學會真的希望你去寫 View spec，原因是這些東西都會被 Feature spec 給覆蓋，且它的功能 Feature spec 都有提供。</p>
+<p>而 Route spec 也是一樣的道理，也有許多的層面都是被 Feature spec 給覆蓋。</p>
+<h1 id="小結">小結</h1>
+<p>這次是把自己看了蠻多測試書後的感想寫出來，因為真的有蠻多的東西在 Wiki 上的解釋和 RSpec 裡面是有灰色地帶，真的會因為術語太多而搞不清楚情況。</p>
+<p>而對於有些 RSpec 提供的測試，自己也沒有很常使用，因為 Model spec 以及 Feature spec 就能有效的覆蓋大部分的情形。</p>
+<p>如果有什麼想法也可以留言告訴我喔！可以一起討論～</p>
+              
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://robeeerto.tw/tags/rspec/">RSpec</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-27-rspec-%E7%9A%84-mock-stub/" data-tooltip="Day 27 RSpec 的 Mock &amp; Stub" aria-label="下一篇: Day 27 RSpec 的 Mock &amp; Stub">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-25-%E7%94%A8-webmock-vcr-%E4%BE%86%E5%AF%A6%E4%BD%9C%E6%B8%AC%E8%A9%A6/" data-tooltip="Day 25 用 WebMock &#43; VCR 來實作測試" aria-label="上一篇: Day 25 用 WebMock &#43; VCR 來實作測試">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/robeeerto.tw\/2021\/10\/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8\/';
+        
+          this.page.identifier = '\/2021\/10\/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-robeeerto-github-io';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Robert.C. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-27-rspec-%E7%9A%84-mock-stub/" data-tooltip="Day 27 RSpec 的 Mock &amp; Stub" aria-label="下一篇: Day 27 RSpec 的 Mock &amp; Stub">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/10/day-25-%E7%94%A8-webmock-vcr-%E4%BE%86%E5%AF%A6%E4%BD%9C%E6%B8%AC%E8%A9%A6/" data-tooltip="Day 25 用 WebMock &#43; VCR 來實作測試" aria-label="上一篇: Day 25 用 WebMock &#43; VCR 來實作測試">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/10/day-26-%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E6%B8%AC%E8%A9%A6%E6%87%89%E8%A9%B2%E5%AF%AB%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E4%B8%8D%E7%94%A8/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-26-%25E4%25BB%2580%25E9%25BA%25BC%25E6%25A8%25A3%25E7%259A%2584%25E6%25B8%25AC%25E8%25A9%25A6%25E6%2587%2589%25E8%25A9%25B2%25E5%25AF%25AB%25E4%25BB%2580%25E9%25BA%25BC%25E6%25A8%25A3%25E7%259A%2584%25E4%25B8%258D%25E7%2594%25A8%2F" aria-label="分享到 %s Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-26-%25E4%25BB%2580%25E9%25BA%25BC%25E6%25A8%25A3%25E7%259A%2584%25E6%25B8%25AC%25E8%25A9%25A6%25E6%2587%2589%25E8%25A9%25B2%25E5%25AF%25AB%25E4%25BB%2580%25E9%25BA%25BC%25E6%25A8%25A3%25E7%259A%2584%25E4%25B8%258D%25E7%2594%25A8%2F" aria-label="分享到 %s Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Frobeeerto.tw%2F2021%2F10%2Fday-26-%25E4%25BB%2580%25E9%25BA%25BC%25E6%25A8%25A3%25E7%259A%2584%25E6%25B8%25AC%25E8%25A9%25A6%25E6%2587%2589%25E8%25A9%25B2%25E5%25AF%25AB%25E4%25BB%2580%25E9%25BA%25BC%25E6%25A8%25A3%25E7%259A%2584%25E4%25B8%258D%25E7%2594%25A8%2F" aria-label="分享到 %s Google&#43;">
+          <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Robert.C</h4>
+    
+      <div id="about-card-bio">Ruby on Rails Developer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan, Taipei
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108270054348.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://robeeerto.tw/js/script-8lglxdix2nqhalxxm2bujhkcc8cctdrd5o5axonwhfzx2zqrer5facyn8.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

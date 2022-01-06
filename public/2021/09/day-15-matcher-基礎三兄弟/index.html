@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Day 15 Matcher 基礎三兄弟！",
+  
+  "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png",
+  
+  "datePublished": "2021-09-29T17:17:01+08:00",
+  "dateModified": "2021-09-29T17:17:01+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Robert.C",
+    
+    "image": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/robeeerto.tw\/2021\/09\/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Robert.C",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp"
+    }
+    
+  },
+  "description": "解釋一下，eq 間微小的差別！\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.88.1 with theme Tranquilpeak 0.5.0-BETA">
+<meta name="author" content="Robert.C">
+<meta name="keywords" content="">
+<meta name="description" content="解釋一下，eq 間微小的差別！">
+
+
+<meta property="og:description" content="解釋一下，eq 間微小的差別！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day 15 Matcher 基礎三兄弟！">
+<meta name="twitter:title" content="Day 15 Matcher 基礎三兄弟！">
+<meta property="og:url" content="https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/">
+<meta property="twitter:url" content="https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/">
+<meta property="og:site_name" content="Robert.C">
+<meta property="og:description" content="解釋一下，eq 間微小的差別！">
+<meta name="twitter:description" content="解釋一下，eq 間微小的差別！">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-09-29T17:17:01">
+  
+  
+    <meta property="article:modified_time" content="2021-09-29T17:17:01">
+  
+  
+  
+    
+      <meta property="article:section" content="2021 鐵人賽">
+    
+  
+  
+    
+      <meta property="article:tag" content="RSpec">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp">
+
+
+
+
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+  <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png">
+
+
+
+    <title>Day 15 Matcher 基礎三兄弟！</title>
+
+    <link rel="icon" href="https://robeeerto.tw/images/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://robeeerto.tw/css/style-x4v5aep1xln8tw4u8b4utrzzm45rcnnq6emr4myqn5eka2yri56y1t7q.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-205530984-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://robeeerto.tw/" aria-label="去首頁">Robert.C</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://robeeerto.tw/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://robeeerto.tw/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Robert.C</h4>
+        
+          <h5 class="sidebar-profile-bio">Ruby on Rails Developer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://robeeerto.tw/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robeeerto" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Day 15 Matcher 基礎三兄弟！
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-09-29T17:17:01&#43;08:00">
+        
+  九月 29, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://robeeerto.tw/categories/2021-%e9%90%b5%e4%ba%ba%e8%b3%bd">2021 鐵人賽</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>解釋一下，eq 間微小的差別！</p>
+<p><h1 id="table-of-contents">目錄</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#eq-matcher">eq Matcher</a></li>
+    <li><a href="#eql-matcher">eql Matcher</a></li>
+    <li><a href="#equal-matcher--be-matcher">equal Matcher &amp; be Matcher</a></li>
+    <li><a href="#小結">小結</a></li>
+  </ul>
+</nav>
+
+今天會開始介紹許多好用的 <code>Matcher</code> 也就是配對仔，從開始到現在我們都只使用過 <code>eq</code> 這種用法！</p>
+<p>其實還有很多有趣的 <code>Matcher</code> 可以使用！</p>
+<p>今天會介紹三種不同的 <code>Matcher</code> 但又很相似的，分別是 <code>eq</code> <code>eql</code> <code>be</code> ！</p>
+<h1 id="eq-matcher">eq Matcher</h1>
+<p><code>eq</code> 是我們最常使用的 <code>Matcher</code>，其概念也非常簡單，就是單純的比較 value，而不比較 type ！</p>
+<p>我們可以用一些示範來比喻一下！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>範例</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe &#34;eq matcher&#34; do
+  let(:a) { 5.0 }
+  let(:b) { 5 }
+  
+  it &#39;only tests for value&#39; do
+    expect(a).to eq(5)
+    expect(b).to eq(5.0)
+    expect(a).to eq(b)
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>這會是一個全部通過的情況！我們也說過 <code>eq</code> 只看值，不看型別。</p>
+<p>為什麼會這樣說呢？因為其實在 Ruby 的世界中 <code>5</code> and <code>5.0</code> 兩個人是屬於不同的類別！</p>
+<p>若是在 IRB 中試試看：</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>IRB mode</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">&gt; 5.class
+&gt; Integer
+&gt; 5.0.class
+&gt; Float</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>在 Ruby 的整數和浮點數是不同的類別，自然而然也不會是同一個 type！</p>
+<p>但 <code>eq</code> 會略過型別的比對，專注在值是否吻合！</p>
+<p>而一直強調型別，那會根據型別來判斷的 <code>Matcher</code> 是哪個呢？</p>
+<h1 id="eql-matcher">eql Matcher</h1>
+<p>雖然只差了一個 <code>l</code> 的字母，但在處理的嚴謹度上就完全不相同了！</p>
+<p>如果一樣使用剛剛的範例，但改用 <code>eql</code> 來看看會發生什麼事情？</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>eql 的差別</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe &#34;eql matcher&#34; do
+  let(:a) { 5.0 }
+  let(:b) { 5 }
+
+  it &#39;tests for value and type&#39; do
+    expect(a).to eql(5)
+    expect(b).to eql(5.0)
+    expect(a).to eql(b)
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>沒通過的結果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109291720026.png" alt=""></p>
+<p>他會告訴你，<code>5</code> 和 <code>5.0</code> 是不相同的東西，測試不通過！！！</p>
+<p>你會想說，這樣有什麼差別啦，現實世界中 5 就是 5.0 啦～</p>
+<p>但情境如果是在處理精密的匯率或是稅率等等，使用 <code>eq</code> 來做 <code>Matcher</code> 是不是會有一點草率呢？</p>
+<p>使用 <code>eql</code> 能夠幫你在撰寫方法的時候考慮得更多！你也可以想像成嚴格模式啦～</p>
+<p>因為它必須是 <strong>相同的 value 以及 相同的類別</strong> 才能被認定為相同！</p>
+<p>接下來我想介紹更嚴格的一個 <code>Matcher</code>，他不只要你是同一個型別，他還要你是同一個物件！</p>
+<h1 id="equal-matcher--be-matcher">equal Matcher &amp; be Matcher</h1>
+<p>會放在一起講的原因是 <code>equal</code> 等同於 <code>be</code>，所以接下來我們會一起示範這要怎麼用！</p>
+<p>但在放上範例之前，我想提一個概念：</p>
+<p><code>equality</code> 意思是在確認兩個物件在基本的設計上一樣的！</p>
+<p><code>identity</code> 意思是在確認兩個物件是同一個物件！</p>
+<p>為什麼會講這樣的概念呢？因為 <code>equal</code> 就是 <code>identity</code> 的概念，而上面的 <code>eq</code> <code>eql</code> 都像是 <code>equality</code> 的概念！</p>
+<p>我們換個類比的方法，假設我在一條大街上，和我隔壁的鄰居蓋了一間一模一樣的房子 ( 是真的一模一樣，包含窗框、草皮、房門等等 )</p>
+<p>你心裡會說，這兩個房子長得一模一樣欸！但你不會說這是同一個房子，對吧？</p>
+<p>就算他們在怎麼像，像到完全看不出來差別，你還是能用地址來做判斷，他們還是兩間房子！</p>
+<p>等等示範的 <code>equal</code> 就是在幫你檢查是不是同一個地址，同一個房子的概念！</p>
+<p>而 <code>eq</code> <code>eql</code> 都只是看看照片說，這兩個根本一模一樣嘛～</p>
+<p>廢話不多說，我們直接上 Code 吧！</p>
+
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>eq &amp; eql</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">ruby</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-ruby ruby" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-ruby ruby"><code class="ruby">RSpec.describe &#34;equal matcher &amp; be matcher&#34; do
+  let(:a) { [7, 7, 7]}
+  let(:b) { [7, 7, 7]}
+  let(:c) { a }
+  
+  it &#34;test for object identity&#34; do
+    expect(a).to eq(b)
+    expect(a).to eql(b)
+    
+    expect(a).to equal(c)
+    expect(a).not_to equal(b)
+  end
+end</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>上面是一個會全部通過的測試！</p>
+<p>這邊的 <code>c</code> 變數，指向 <code>a</code> 變數，這代表著什麼？</p>
+<p>我把我家的地址填得和你家地址一樣，我們兩個是一模一樣在同一個地方的物件！</p>
+<p>而 <code>a</code> 和 <code>b</code> 在值以及型別上來看，都一模一樣，但他們在記憶體中的地址卻不相同，我們可以故意讓測試壞掉來看看 OutPut 是什麼？</p>
+<p>我們讓 <code>a equal b</code> 來試試看！</p>
+<p>錯誤的提示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109291721465.png" alt=""></p>
+<p>可以看到兩個在 <code>Array</code> 的記憶體位置是不相同的 ( 一個是 <code>2800</code>， 一個是 <code>2820</code> )，這就像是房子的案例一樣，我們雖然一樣，但終究是兩個個體！</p>
+<p>下面的提示也有告訴你，這是在比較物件的 <code>identity</code>！</p>
+<blockquote>
+<p>剛剛範例上都使用 <code>equal</code>，但其實你也可以用 <code>be</code> 比較省力喔～</p>
+</blockquote>
+<h1 id="小結">小結</h1>
+<p>重新複習一下三者的不同之處！</p>
+<p><code>eq</code>：單純比較值，不在意型別</p>
+<p><code>eql</code>：比較值以及型別</p>
+<p><code>equal 以及 be</code>：比較值，型別，記憶體位置(是否為同一個物件)</p>
+<p>希望以後大家在使用的時候，可以根據要測試的嚴謹程度來決定要使用哪一個 <code>Matcher</code> 喔！</p>
+<p>這三個都是非常基礎的 <code>Matcher</code> 但卻常常不知道錯在哪，希望這篇文章可以幫助到你～</p>
+              
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://robeeerto.tw/tags/rspec/">RSpec</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/day-16-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8A/" data-tooltip="Day 16 Matcher 介紹 (上)" aria-label="下一篇: Day 16 Matcher 介紹 (上)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/day-14-%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84-example/" data-tooltip="Day 14 分享你的 Example！" aria-label="上一篇: Day 14 分享你的 Example！">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/robeeerto.tw\/2021\/09\/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F\/';
+        
+          this.page.identifier = '\/2021\/09\/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-robeeerto-github-io';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Robert.C. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/day-16-matcher-%E4%BB%8B%E7%B4%B9-%E4%B8%8A/" data-tooltip="Day 16 Matcher 介紹 (上)" aria-label="下一篇: Day 16 Matcher 介紹 (上)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://robeeerto.tw/2021/09/day-14-%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84-example/" data-tooltip="Day 14 分享你的 Example！" aria-label="上一篇: Day 14 分享你的 Example！">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/" title="分享到 %s Facebook" aria-label="分享到 %s Facebook">
+              <i class="fab fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/" title="分享到 %s Twitter" aria-label="分享到 %s Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://robeeerto.tw/2021/09/day-15-matcher-%E5%9F%BA%E7%A4%8E%E4%B8%89%E5%85%84%E5%BC%9F/" title="分享到 %s Google&#43;" aria-label="分享到 %s Google&#43;">
+              <i class="fab fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+            <i class="far fa-comment"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#" aria-label="回到頂部">
+        
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frobeeerto.tw%2F2021%2F09%2Fday-15-matcher-%25E5%259F%25BA%25E7%25A4%258E%25E4%25B8%2589%25E5%2585%2584%25E5%25BC%259F%2F" aria-label="分享到 %s Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Frobeeerto.tw%2F2021%2F09%2Fday-15-matcher-%25E5%259F%25BA%25E7%25A4%258E%25E4%25B8%2589%25E5%2585%2584%25E5%25BC%259F%2F" aria-label="分享到 %s Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Frobeeerto.tw%2F2021%2F09%2Fday-15-matcher-%25E5%259F%25BA%25E7%25A4%258E%25E4%25B8%2589%25E5%2585%2584%25E5%25BC%259F%2F" aria-label="分享到 %s Google&#43;">
+          <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109220041449.webp" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Robert.C</h4>
+    
+      <div id="about-card-bio">Ruby on Rails Developer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan, Taipei
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108270054348.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://robeeerto.tw/js/script-8lglxdix2nqhalxxm2bujhkcc8cctdrd5o5axonwhfzx2zqrer5facyn8.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

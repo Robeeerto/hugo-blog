@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Robert.C</title>
+    <link>https://robeeerto.tw/tags/</link>
+    <description>Recent content in Tags on Robert.C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Oct 2021 01:20:05 +0800</lastBuildDate><atom:link href="https://robeeerto.tw/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RSpec</title>
+      <link>https://robeeerto.tw/tags/rspec/</link>
+      <pubDate>Thu, 14 Oct 2021 01:20:05 +0800</pubDate>
+      
+      <guid>https://robeeerto.tw/tags/rspec/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OrganizeCode</title>
+      <link>https://robeeerto.tw/tags/organizecode/</link>
+      <pubDate>Mon, 04 Oct 2021 03:57:01 +0800</pubDate>
+      
+      <guid>https://robeeerto.tw/tags/organizecode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internet</title>
+      <link>https://robeeerto.tw/tags/internet/</link>
+      <pubDate>Thu, 09 Sep 2021 18:00:39 +0800</pubDate>
+      
+      <guid>https://robeeerto.tw/tags/internet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SourceCode</title>
+      <link>https://robeeerto.tw/tags/sourcecode/</link>
+      <pubDate>Mon, 23 Aug 2021 16:26:16 +0800</pubDate>
+      
+      <guid>https://robeeerto.tw/tags/sourcecode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Syntax</title>
+      <link>https://robeeerto.tw/tags/syntax/</link>
+      <pubDate>Sun, 22 Aug 2021 22:38:11 +0800</pubDate>
+      
+      <guid>https://robeeerto.tw/tags/syntax/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
