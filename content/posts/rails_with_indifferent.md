@@ -2,6 +2,7 @@
 title: "Rails 的 HashWithIndifferentAccess"
 date: 2021-08-23T16:26:16+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108222257343.jpg'
 coverImage: "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108222257343.jpg" 
 coverMeta: out
 coverSize: partial

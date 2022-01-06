@@ -2,6 +2,7 @@
 title: "MVC 架構是不是就夠用了？"
 date: 2021-10-04T03:57:01+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp'
 coverMeta: out
 coverSize: partial

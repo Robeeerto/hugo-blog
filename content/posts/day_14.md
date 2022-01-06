@@ -2,6 +2,7 @@
 title: "Day 14 分享你的 Example！"
 date: 2021-09-28T17:15:43+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

@@ -12,7 +12,7 @@
 # For developpers, if you modify this theme, put your images in `source/images` folder and
 # use grunt task `build` to synchronize assets
 
-baseURL = ""
+baseURL = "https://robeeerto.tw"
 languageCode = "en-us"
 DefaultContentLanguage = "zh-tw"
 title = "Robert.C"
@@ -179,15 +179,15 @@ enableGitInfo = true
   imageGallery = true
 
   # Display thumbnail image of each post on index pages (false: disabled, true: enabled)
-  thumbnailImage = false
+  thumbnailImage = true
   # Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`)
   # Set this value to `right` if you have old posts to keep the old style on them
   # and define `thumbnailImagePosition` on a post to overwrite this setting
-  thumbnailImagePosition = "left"
+  thumbnailImagePosition = "right"
   # Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image
   # Set this value to `true` if you have old posts that use the cover image or the first photo as the thumbnail image
   # and set `autoThumbnailImage` to `false` on a post to overwrite this setting
-  autoThumbnailImage = true
+  autoThumbnailImage = false
 
   # Your favicon path, default is "/favicon.png"
   favicon = "images/favicon.png"

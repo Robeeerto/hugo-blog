@@ -2,6 +2,7 @@
 title: "Day 28 如何撰寫表徵測試"
 date: 2021-10-12T17:24:59+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

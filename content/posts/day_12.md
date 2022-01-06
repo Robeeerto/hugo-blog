@@ -2,6 +2,7 @@
 title: "Day 12 Hooks 們以及作用域的差別！"
 date: 2021-09-26T14:08:26+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

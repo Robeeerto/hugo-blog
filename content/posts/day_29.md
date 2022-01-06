@@ -2,6 +2,7 @@
 title: "Day 29 RSpec 裡的 Factories 和 Fixtures"
 date: 2021-10-13T20:24:18+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

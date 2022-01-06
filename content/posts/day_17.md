@@ -2,6 +2,7 @@
 title: "Day 17 Matcher 介紹 (中)"
 date: 2021-10-01T18:40:04+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

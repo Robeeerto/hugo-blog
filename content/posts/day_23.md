@@ -2,6 +2,7 @@
 title: "Day 23 介紹 FactoryBot Rails 及設定"
 date: 2021-10-07T18:38:21+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

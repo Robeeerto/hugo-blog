@@ -2,6 +2,7 @@
 title: "Day 27 RSpec 的 Mock & Stub"
 date: 2021-10-11T16:49:26+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

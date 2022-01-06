@@ -2,6 +2,7 @@
 title: "Day 11 用 Context 來組織你的測試區塊"
 date: 2021-09-25T19:54:22+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

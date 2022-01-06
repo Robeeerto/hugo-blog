@@ -2,6 +2,7 @@
 title: "網際網路是如何運作的？"
 date: 2021-09-09T18:00:39+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109091802869.jpg'
 coverImage: "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109091802869.jpg"
 coverMeta: out
 coverSize: partial

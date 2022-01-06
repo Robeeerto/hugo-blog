@@ -2,6 +2,7 @@
 title: "Day 9 整理重複煩人的程式碼！"
 date: 2021-09-23T19:00:06+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

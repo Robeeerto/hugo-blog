@@ -2,6 +2,7 @@
 title: "Day 8 超多的範例？怎麼辦呢？"
 date: 2021-09-22T20:32:53+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

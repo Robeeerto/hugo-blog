@@ -2,6 +2,7 @@
 title: "Day 15 Matcher 基礎三兄弟！"
 date: 2021-09-29T17:17:01+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

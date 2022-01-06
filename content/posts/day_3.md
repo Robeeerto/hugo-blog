@@ -2,6 +2,7 @@
 title: "Day 3 安裝 RSpec 以及環境設定"
 date: 2021-09-21T16:48:05+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

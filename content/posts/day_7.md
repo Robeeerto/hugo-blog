@@ -2,6 +2,7 @@
 title: "Day 7 從閱讀錯誤到通過測試！"
 date: 2021-09-21T22:36:26+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

@@ -2,6 +2,7 @@
 title: "Day 26 什麼樣的測試應該寫，什麼樣的不用？"
 date: 2021-10-10T23:11:20+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

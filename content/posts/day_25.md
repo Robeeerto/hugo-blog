@@ -2,6 +2,7 @@
 title: "Day 25 用 WebMock + VCR 來實作測試"
 date: 2021-10-09T15:12:30+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

@@ -2,6 +2,7 @@
 title: "Day 13 懶得想變數嗎？ RSpec 有提供你啦"
 date: 2021-09-27T18:41:21+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

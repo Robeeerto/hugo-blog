@@ -2,6 +2,7 @@
 title: "寫 React 時常常使用的語法"
 date: 2021-08-22T22:38:11+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108231629312.jpg'
 coverImage: "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108231629312.jpg" 
 coverMeta: out
 coverSize: partial

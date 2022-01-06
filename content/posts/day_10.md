@@ -2,6 +2,7 @@
 title: "Day 10 實用的 let 方法以及客製化錯誤訊息"
 date: 2021-09-24T18:50:55+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial

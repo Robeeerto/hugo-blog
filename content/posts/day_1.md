@@ -2,6 +2,7 @@
 title: "Day 1 介紹測試框架 RSpec"
 date: 2021-09-21T16:17:55+08:00
 metaAlignment: center
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109211620030.png' 
 coverMeta: out
 coverSize: partial
@@ -9,10 +10,8 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: '第一天，先認識 RSpec 吧！'
 ---
-
-第一天，先認識 RSpec 吧！
-<!--more-->
 
 
 {{< toc >}}
