@@ -11,6 +11,9 @@ categories:
 tags:
 - RSpec
 summary: '第一天，先認識 RSpec 吧！'
+keywords:
+- RSpec
+- Test
 ---
 
 

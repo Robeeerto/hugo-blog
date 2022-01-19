@@ -290,11 +290,6 @@ enableGitInfo = true
     icon = "fab fa-twitter"
     url = "https://twitter.com/intent/tweet?text=%s"
 
-  [[params.sharingOptions]]
-    name = "Google+"
-    icon = "fab fa-google-plus"
-    url = "https://plus.google.com/share?url=%s"
-
   # -------------------
   # Integrated services
   # -------------------
@@ -316,7 +311,7 @@ enableGitInfo = true
   [params.comment]
     [params.comment.disqus]
       enable = true
-      shortname = "https-robeeerto-github-io"
+      shortname = "https-robeeerto-tw"
     [params.comment.gitalk]
       enable = false
       # clientId =

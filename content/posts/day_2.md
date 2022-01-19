@@ -10,10 +10,11 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: '說到測試，就不得不提到測試的種類！'
+keywords:
+- RSpec
+- Test
 ---
-
-說到測試，就不得不提到測試的種類！
-<!--more-->
 
 {{< toc >}}
 

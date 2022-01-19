@@ -10,10 +10,12 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: '來看看初始化後的樣子吧！'
+keywords:
+- RSpec
+- Test
 ---
 
-來看看初始化後的樣子吧！
-<!--more-->
 {{< toc >}}
 
 # 利用 Command line 來創建你的 RSpec 資料夾

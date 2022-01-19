@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: '開始之前，做一些設定和準備吧！'
+keywords:
+- RSpec
+- Ruby
+- Rails
 ---
 
-開始之前，做一些設定和準備吧！
-<!--more-->
 {{< toc >}}
 
 # 檢查電腦是否有 Ruby
