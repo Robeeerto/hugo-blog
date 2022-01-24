@@ -10,10 +10,12 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 介紹 RSpec 的核心價值！
+keywords:
+- TDD
+- RSpec
 ---
 
-介紹 RSpec 的核心價值！
-<!--more-->
 {{< toc >}}
 
 # 什麼是 TDD (Test-Driven Development) ?

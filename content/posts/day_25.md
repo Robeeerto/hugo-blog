@@ -10,11 +10,16 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 假的 HTTP 請求！
+keywords:
+- RSpec
+- WebMock
+- VCR
+- HTTP
 ---
 
-假的 HTTP 請求！
-<!--more-->
 {{< toc >}}
+
 WebMock 以及 VCR 是拿來實作關於網站請求的工具，在這篇文章中也會解釋兩者分別是什麼，並且做一個簡單的教學！
 
 # 為什麼需要 WebMock & VCR ?

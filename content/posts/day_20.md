@@ -10,6 +10,11 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 實用的 Instance doubles
+keywords:
+- RSpec
+- instance_doubles
+- mock
 ---
 
 實用的 Instance doubles

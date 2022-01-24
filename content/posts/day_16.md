@@ -10,6 +10,11 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 介紹 Matcher 的上集
+keywords:
+- RSpec
+- syntax
+- matcher
 ---
 
 介紹 Matcher 的上集

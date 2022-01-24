@@ -10,10 +10,12 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 來釐清作用域吧！
+keywords:
+- RSpec
+- scope
 ---
 
-來釐清作用域吧！
-<!--more-->
 {{< toc >}}
 
 # After Hooks

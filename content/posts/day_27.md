@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 差別是什麼呢？
+keywords:
+- RSpec
+- mock
+- stub
 ---
 
-差別是什麼呢？
-<!--more-->
 {{< toc >}}
 
 在我一開始學習寫 Rails 測試時，會有很常見的問題，就是到底什麼是 mocks & stubs，然後我要怎麼使用它們？

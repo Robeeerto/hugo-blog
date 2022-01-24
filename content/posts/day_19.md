@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: Mock 篇開場～
+keywords:
+- RSpec
+- mock
+- double
 ---
 
-Mock 篇開場～
-<!--more-->
 {{< toc >}}
 
 昨天結束了 `Matcher` 的介紹，今天開始進入 `mock` 的篇章。

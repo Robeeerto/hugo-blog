@@ -10,11 +10,14 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 來修改昨日的錯誤吧！
+keywords:
+- RSpec
+- Refactor
 ---
 
-來修改昨日的錯誤吧！
-<!--more-->
 {{< toc >}}
+
 昨天我們的測試竟然沒有通過...
 
 ![](https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109212238767.png)

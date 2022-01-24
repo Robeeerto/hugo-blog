@@ -10,11 +10,17 @@ categories:
 - "Ruby on Rails"
 tags:
 - OrganizeCode
+summary: 通通寫在 Model 就好了？
+keywords:
+- Rails
+- MVC
+- concern
+- service_object
+- module
 ---
 
-通通寫在 Model 就好了？
-<!--more-->
 {{< toc >}}
+
 # MVC 架構是不是就夠用了？
 
 最近工作的時候，收到了這樣的問題，確實讓我想了蠻多的，也透過很多的文章來讓自己去思考，究竟 Rails 的 MVC 架構是不是就能夠處理你整個應用程式呢？

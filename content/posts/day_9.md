@@ -10,10 +10,12 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 重複的程式碼該怎麼做？
+keywords:
+- RSpec
+- Refactor
 ---
 
-重複的程式碼該怎麼做？
-<!--more-->
 {{< toc >}}
 
 昨天我們實作了把 `example` 給拆開，並且讓整個測試更具備邏輯。

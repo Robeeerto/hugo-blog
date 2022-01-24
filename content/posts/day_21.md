@@ -10,6 +10,11 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: Mock 軍團的最後一個成員！
+keywords:
+- RSpec
+- spies
+- mock
 ---
 
 Mock 軍團的最後一個成員！

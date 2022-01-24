@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 什麼都要寫測試嗎？
+keywords:
+- RSpec
+- model_spec
+- feature_spec
 ---
 
-什麼都要寫測試嗎？
-<!--more-->
 {{< toc >}}
 
 # 決定要寫什麼樣的測試

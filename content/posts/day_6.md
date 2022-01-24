@@ -10,12 +10,14 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 正式進入基本語法！
+keywords:
+- RSpec
+- Syntax
 ---
 
-正式進入基本語法！
-<!--more-->
-
 {{< toc >}}
+
 昨天的文章介紹了 TDD 的流程和精神等等。
 
 今天我們要正式進入 RSpec 的世界，所以我們從最一開始容易見到的幾種語法開始做解釋和教學！

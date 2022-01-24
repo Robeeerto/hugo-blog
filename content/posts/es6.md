@@ -10,13 +10,14 @@ categories:
 - JavaScript
 tags:
 - Syntax
+summary: 近期開始寫 React，有好多寫法好陌生，記錄一下！
+keywords:
+- React
+- syntax
+- es6
 ---
 
-近期開始寫 React，有好多寫法好陌生，記錄一下！
-<!--more-->
-
 {{< toc >}}
-
 
 # 箭頭函式
 

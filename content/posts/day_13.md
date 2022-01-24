@@ -10,10 +10,12 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 自動產生的變數，讓你使用～
+keywords:
+- RSpec
+- subject
 ---
 
-自動產生的變數，讓你使用～
-<!--more-->
 {{< toc >}}
 
 還記得我們使用 `let` 方法來實作一個物件來讓我們可以快速使用！

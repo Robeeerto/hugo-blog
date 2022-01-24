@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 自動化測試的好處！
+keywords:
+- Rspec
+- automated_test
+- benefit
 ---
 
-自動化測試的好處！
-<!--more-->
 {{< toc >}}
 
 到了鐵人賽的最後一天，看了這麼多東西，我們可以來談談學這些測試的好處是什麼？

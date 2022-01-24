@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 好多的範例，怎麼辦才好？
+keywords:
+- RSpec
+- Syntax
+- Assert
 ---
 
-好多的範例，怎麼辦才好？
-<!--more-->
 {{< toc >}}
 
 昨天我們做了一個關於漢堡種類的測試，但真正的測試怎麼可能這麼少呢！

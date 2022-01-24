@@ -10,6 +10,11 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 介紹 RSpec Rails 的設定
+keywords:
+- RSpec
+- Rails
+- setup
 ---
 
 介紹 RSpec Rails 的設定

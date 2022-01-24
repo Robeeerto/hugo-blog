@@ -10,11 +10,15 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 使用 Context 來組織程式碼～
+keywords:
+- RSpec
+- context
+- syntax
 ---
 
-使用 Context 來組織程式碼～
-<!--more-->
 {{< toc >}}
+
 再開始介紹 `Context` 之前，想先推薦大家一個很棒的網站！
 
 裡面有介紹 RSpec 撰寫的慣例，分別介紹了好的寫法和壞的寫法，當然這都是一個大多數人的共識，還是以自己工作的團隊一致認同的 Coding Style 為準啊～

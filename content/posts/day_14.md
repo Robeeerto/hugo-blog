@@ -10,11 +10,14 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 分享共用的 Example！
+keywords:
+- RSpec
+- share_example
 ---
 
-分享共用的 Example！
-<!--more-->
 {{< toc >}}
+
 # 前言
 
 昨天結尾有稍微提到，若是有相同的 example 該怎麼辦？

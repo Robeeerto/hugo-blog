@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 超好用的 FactoryBot 介紹
+keywords:
+- RSpec
+- FactoryBot
+- FakeData
 ---
 
-超好用的 FactoryBot 介紹
-<!--more-->
 {{< toc >}}
 
 首先，我們一樣先介紹基本的安裝以及設定，當一切就緒的時候，寫測試這件事情也就沒有那麼複雜和麻煩了～

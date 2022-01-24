@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 超常用的 Capybara！
+keywords:
+- RSpec
+- Capybara
+- setup
 ---
 
-超常用的 Capybara！
-<!--more-->
 {{< toc >}}
 
 在我們 new 出一個全新的 Rails 專案時，會在 Gemfile 裡面看到預設的測試套件，分別是：`capybara` & `selenium-webdriver` & `webdrivers`。

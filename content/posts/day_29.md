@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 常常聽到的 Fixtures 是什麼？
+keywords:
+- RSpec
+- factories
+- fixtures
 ---
 
-常常聽到的 Fixtures 是什麼？
-<!--more-->
 {{< toc >}}
 
 測試有一個必要的條件就是要有資料來做測試，有三種方法可以 Rails 中產生測試資料。

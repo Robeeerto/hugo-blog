@@ -10,11 +10,14 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 解釋一下，eq 間微小的差別！
+keywords:
+- RSpec
+- matcher
 ---
 
-解釋一下，eq 間微小的差別！
-<!--more-->
 {{< toc >}}
+
 今天會開始介紹許多好用的 `Matcher` 也就是配對仔，從開始到現在我們都只使用過 `eq` 這種用法！
 
 其實還有很多有趣的 `Matcher` 可以使用！

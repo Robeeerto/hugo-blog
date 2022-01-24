@@ -10,10 +10,12 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: Matcher 最終章！！！
+keywords:
+- RSpec
+- matcher
 ---
 
-Matcher 最終章！！！
-<!--more-->
 {{< toc >}}
 
 今天將一口氣把剩下比較常用的 `Matcher` 一併介紹起來！

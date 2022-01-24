@@ -10,10 +10,13 @@ categories:
 - "Ruby on Rails"
 tags:
 - SourceCode
+summary: 深掘程式碼，到底為什麼呢？
+keywords:
+- Rails
+- HashWithIndifferentAccess
+- core_code
 ---
 
-深掘程式碼，到底為什麼呢？
-<!--more-->
 {{< toc >}}
 
 在學習 Rails 的期間，一定有想過，為什麼在 Rails 裡面的 params，從印出來的那剎那就是用字串當作 key，但是你用符號也依然能夠取得 value 呢？

@@ -10,10 +10,13 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 表徵測試是什麼？怎麼寫？
+keywords:
+- RSpec
+- refactor
+- characterization_test
 ---
 
-表徵測試是什麼？怎麼寫？
-<!--more-->
 {{< toc >}}
 
 # 什麼是表徵測試以及解決的問題是什麼？

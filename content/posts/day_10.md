@@ -10,11 +10,15 @@ categories:
 - "2021 鐵人賽"
 tags:
 - RSpec
+summary: 介紹實用的好方法，順便客製化你的錯誤訊息！
+keywords:
+- RSpec
+- let
+- error
 ---
 
-介紹實用的好方法，順便客製化你的錯誤訊息！
-<!--more-->
 {{< toc >}}
+
 # 改變數值的時候
 
 昨天提到變動性的問題是什麼呢？
