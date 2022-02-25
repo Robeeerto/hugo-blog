@@ -10,7 +10,7 @@ categories:
 - Docker
 tags:
 - Introduce
-summary: 簡介 Docker 這個東西！
+summary: Docker 是什麼酷東西？
 keywords:
 - Docker
 - intro

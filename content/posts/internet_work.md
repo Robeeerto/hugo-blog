@@ -7,7 +7,7 @@ coverImage: "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202109091802869.jpg"
 coverMeta: out
 coverSize: partial
 categories:
-- BasicKnowledge
+- BackEndRoadMap
 tags:
 - Internet
 summary: 有時候很好奇，到底真實情況是怎麼樣？
