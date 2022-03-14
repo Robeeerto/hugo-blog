@@ -2,14 +2,14 @@
 title: "MVC 架構是不是就夠用了？"
 date: 2021-10-04T03:57:01+08:00
 metaAlignment: center
-thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp'
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202203140233343.png'
 coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp'
 coverMeta: out
 coverSize: partial
 categories:
-- "Ruby on Rails"
+- "Rails"
 tags:
-- OrganizeCode
+- 'discuss'
 summary: 通通寫在 Model 就好了？
 keywords:
 - Rails

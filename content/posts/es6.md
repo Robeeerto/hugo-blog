@@ -1,8 +1,8 @@
 ---
-title: "寫 React 時常常使用的語法"
+title: "ES6 的新語法"
 date: 2021-08-22T22:38:11+08:00
 metaAlignment: center
-thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108231629312.jpg'
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202203140235380.png'
 coverImage: "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108231629312.jpg" 
 coverMeta: out
 coverSize: partial
@@ -12,7 +12,6 @@ tags:
 - Syntax
 summary: 近期開始寫 React，有好多寫法好陌生，記錄一下！
 keywords:
-- React
 - syntax
 - es6
 ---

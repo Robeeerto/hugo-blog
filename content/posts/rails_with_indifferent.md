@@ -2,12 +2,12 @@
 title: "Rails 的 HashWithIndifferentAccess"
 date: 2021-08-23T16:26:16+08:00
 metaAlignment: center
-thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108222257343.jpg'
+thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202203140233343.png'
 coverImage: "https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202108222257343.jpg" 
 coverMeta: out
 coverSize: partial
 categories:
-- "Ruby on Rails"
+- "Rails"
 tags:
 - SourceCode
 summary: 深掘程式碼，到底為什麼呢？
