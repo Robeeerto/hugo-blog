@@ -1,5 +1,5 @@
 ---
-title: "Ruby 的 block ep.1"
+title: "Ruby block 的運作"
 date: 2022-03-14T02:15:06+08:00
 metaAlignment: center
 thumbnailImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202203140228710.png'
