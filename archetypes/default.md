@@ -12,15 +12,14 @@ summary:
 keywords:
 ---
 
-<!--more-->
-
-
 {{< toc >}}
 
 
 
 {{< tabbed-codeblock >}}
+<!-- tab ruby -->
 
+<!-- endtab -->
 {{</ tabbed-codeblock>}}
 
 

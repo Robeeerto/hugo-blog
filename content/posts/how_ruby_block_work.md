@@ -10,7 +10,7 @@ categories:
 - "Ruby"
 tags:
 - Syntax
-summary: 聊聊 Ruby 的 block
+summary: 簡介 Ruby 的 block
 keywords:
 - Ruby
 - block
@@ -207,7 +207,7 @@ end
 
 其實還有許多關於 block 的細節，也有看到一些關於 block 有趣的問題，之後也想繼續花時間去研究並且寫下文章做紀錄！
 
-1. 呼叫 block 的不同方式，以及為什麼要用它？
+1. [如何呼叫 Ruby 的 block?](https://robeeerto.tw/2022/03/如何呼叫-ruby-的-block/)
 2. proc、block & lambda 之間的差別？
 3. 什麼是 Proc 物件以及它和 block 的關聯？
 4. 什麼是封包？
