@@ -7,7 +7,7 @@ coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202203140229027.jpg'
 coverMeta: out
 coverSize: partial
 categories:
-- "Ruby"
+- Ruby
 tags:
 - Syntax
 summary: 簡介 Ruby 的 block

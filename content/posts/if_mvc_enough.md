@@ -7,9 +7,9 @@ coverImage: 'https://cdn.jsdelivr.net/gh/robeeerto/Pics/img/202110040405929.webp
 coverMeta: out
 coverSize: partial
 categories:
-- "Rails"
+- Rails
 tags:
-- 'discuss'
+- discuss
 summary: 通通寫在 Model 就好了？
 keywords:
 - Rails
