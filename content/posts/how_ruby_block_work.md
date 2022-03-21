@@ -209,7 +209,7 @@ end
 
 1. [如何呼叫 Ruby 的 block?](https://robeeerto.tw/2022/03/如何呼叫-ruby-的-block/)
 2. proc、block & lambda 之間的差別？
-3. [什麼是 Proc 物件以及它和 block 的關聯？](https://robeeerto.tw/2022/03/了解-Proc-物件/)
+3. [什麼是 Proc 物件以及它和 block 的關聯？](https://robeeerto.tw/2022/03/了解-proc-物件/)
 4. 什麼是封包？
 5. 常常看到的 `&block` 是什麼意思？
 6. `[1,2,3].map(&:to_s)` 是怎麼運作的？
