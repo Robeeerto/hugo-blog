@@ -26,7 +26,7 @@ keywords:
 params = {"ingredient": starch, "price": 200}
 params[:ingredient] # "starch"
 # 用符號拿值是我們一開始最先認識的 Ruby
-noodle["ingredient"] # "starch"
+params["ingredient"] # "starch"
 # 但在 Rails 裡面，這也合法
 <!--endtab -->
 {{</ tabbed-codeblock>}}
